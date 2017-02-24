@@ -1,0 +1,5 @@
+get_all_planets         Retrieve Data about Every DB Entry in a Class
+get_planet              Retrieve Data about a Specific DB Entry
+get_planet_schema       Retrieve the schema specifications for
+                        different object classes
+rwars                   Star Wars API client library
