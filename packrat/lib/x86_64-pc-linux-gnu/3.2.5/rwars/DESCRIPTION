@@ -1,7 +1,8 @@
 Package: rwars
 Type: Package
 Title: R Client for the Star Wars API
-Description: Provides functions to retrieve and reformat data from the 'Star Wars' API (SWAPI) <https://swapi.co/>.
+Description: Provides functions to retrieve and reformat data from the
+    'Star Wars' API (SWAPI) <https://swapi.co/>.
 Version: 1.0.0
 Date: 2017-01-13
 Author: Oliver Keyes
@@ -22,3 +23,6 @@ GithubRepo: rwars
 GithubUsername: ironholds
 GithubRef: master
 GithubSHA1: dc9ad4539eeb763be1db8c40f53c69f2f105b9b4
+InstallAgent: packrat 0.4.8.1
+InstallSource: github
+Hash: b9acf5d7959fa54a37e29ff8384b93fd

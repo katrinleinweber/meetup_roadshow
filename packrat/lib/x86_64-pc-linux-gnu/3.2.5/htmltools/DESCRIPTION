@@ -20,3 +20,6 @@ Packaged: 2016-03-21 21:26:31 UTC; jcheng
 Repository: CRAN
 Date/Publication: 2016-03-21 23:36:11
 Built: R 3.2.5; x86_64-pc-linux-gnu; 2017-02-23 23:12:04 UTC; unix
+InstallAgent: packrat 0.4.8.1
+InstallSource: CRAN
+Hash: 6c7e3a96d9034d3ba8e6a07f7e2a333d

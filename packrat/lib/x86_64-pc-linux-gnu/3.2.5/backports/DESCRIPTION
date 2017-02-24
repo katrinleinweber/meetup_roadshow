@@ -5,11 +5,11 @@ Version: 1.0.5
 Author: Michel Lang <michellang@gmail.com>
 Maintainer: Michel Lang <michellang@gmail.com>
 Description: Implementations of functions which have been introduced in
-    R since version 3.0.0. The backports are conditionally exported which
-    results in R resolving the function names to the version shipped with R (if
-    available) and uses the implemented backports as fallback. This way package
-    developers can make use of the new functions without worrying about the
-    minimum required R version.
+    R since version 3.0.0. The backports are conditionally exported
+    which results in R resolving the function names to the version
+    shipped with R (if available) and uses the implemented backports as
+    fallback. This way package developers can make use of the new
+    functions without worrying about the minimum required R version.
 URL: https://github.com/mllg/backports
 BugReports: https://github.com/mllg/backports/issues
 License: GPL-2
@@ -22,3 +22,6 @@ Packaged: 2017-01-18 08:47:45 UTC; lang
 Repository: CRAN
 Date/Publication: 2017-01-18 18:07:29
 Built: R 3.2.5; ; 2017-02-23 23:11:57 UTC; unix
+InstallAgent: packrat 0.4.8.1
+InstallSource: CRAN
+Hash: 8b835bdc5447f2c76fda198e17d6bda4
