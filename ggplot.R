@@ -23,21 +23,19 @@ results <- results %>%
   mutate(trilogy = c(rep("prequel", 3), rep("original", 3), rep("sequel", 1)))
 
 lab = tibble(
-  planets = c(9,9,9),
-  label = c("Prequel", "Original", "Sequel"),
-  ratio = c(45, 65, 100)
+  planets = c(8.75,8.75,8.75),
+  label = c("Prequels", "Originals", "Sequel"),
+  ratio = c(58, 78, 105)
   #color = c("#f4d142", "#418ff4", "#42bc46")
 )
 
-ggplot(results, aes(x = planets, y = ratio)) + 
+p <- ggplot(results, aes(x = planets, y = ratio)) + 
 #  geom_density2d(data = results %>% filter(episode < 7), aes(color = trilogy), 
 #                 alpha = 0.5, contour = TRUE) + 
   geom_point(aes(size = total),color = "white") +
-  geom_label_repel(aes(label = title, color = trilogy),
-                   nudge_y = 5,
-                   color = "white", 
-                   fill =c(rep("#f4d142",3), rep("#418ff4",3), "#42bc46"),
-                   label.r = unit(0, "mm"),label.size = 0) +
+  geom_text_repel(aes(label = title, color = trilogy),
+                   nudge_y = 6 , family = "Droid Sans",
+                   color =c(rep("#ffe81f",3), rep("#418ff4",3), "#42bc46")) +
   labs(
     title = "The Rise of Hyperdrive",
     y = "Ships with Hyperdrive",
@@ -47,13 +45,11 @@ ggplot(results, aes(x = planets, y = ratio)) +
   scale_y_continuous(labels = function(x){paste(x,"%")}) +
   #scale_x_continuous(labels = NULL) +
   scale_fill_continuous(guide = FALSE) +
-  geom_label(data = lab, aes(label = label), 
-             color = "white",
-             fill = c("#f4d142", "#418ff4", "#42bc46"),
-             label.r = unit(0, "mm"),label.size = 0) +
-  scale_color_manual(values  = c("#418ff4", "#f4d142", "#42bc46"), guide = FALSE) +
+  geom_text(data = lab, aes(label = label), family = "Droid Sans", fontface = "bold",
+             color = c("#f4d142", "#418ff4", "#42bc46")) +
+  scale_color_manual(values  = c("#418ff4", "#ffe81f", "#42bc46"), guide = FALSE) +
   theme(
-    text = element_text(color = "white"),
+    text = element_text(family = "Dejavu Serif", face = "bold", color = "white"),
     plot.background = element_rect(fill = "black"),
     legend.background = element_rect(fill = "black"),
     panel.background = element_rect(fill = "black"),
@@ -62,7 +58,8 @@ ggplot(results, aes(x = planets, y = ratio)) +
     panel.grid.major = element_line(color = "darkgrey")
   )
   
-  
+p
+
   
 
   
