@@ -25,7 +25,7 @@ results <- results %>%
 lab = tibble(
   planets = rep(0,3),
   label = c("Episode I-II", "Episode IV-VI", "Episode VII"),
-  ratio = c(58, 78, 105)
+  ratio = c(58, 78, 98)
   #color = c("#f4d142", "#418ff4", "#42bc46")
 )
 
@@ -33,6 +33,8 @@ lab = tibble(
 p <- ggplot(results, aes(x = planets, y = ratio)) + 
 #  geom_density2d(data = results %>% filter(episode < 7), aes(color = trilogy), 
 #                 alpha = 0.5, contour = TRUE) + 
+  geom_text(data = lab, aes(label = label), family = "Droid Sans", fontface = "bold",
+            color = c("#f4d142", "#418ff4", "#42bc46")) +
   geom_point(aes(size = total),color = "darkgrey") +
   geom_text_repel(aes(label = title, color = trilogy),
                    nudge_y = 6 , family = "Droid Sans",
@@ -44,10 +46,8 @@ p <- ggplot(results, aes(x = planets, y = ratio)) +
     size = "Number of Unique Ships"
   ) +
   scale_y_continuous(labels = function(x){paste(x,"%")}) +
-  scale_x_continuous(limits = c(-2, max(results$planets +1))) +
+  scale_x_continuous(limits = c(-1.5, max(results$planets +1))) +
   scale_fill_continuous(guide = FALSE) +
-  geom_text(data = lab, aes(label = label), family = "Droid Sans", fontface = "bold",
-             color = c("#f4d142", "#418ff4", "#42bc46")) +
   scale_color_manual(values  = c("#418ff4", "#ffe81f", "#42bc46"), guide = FALSE) +
   theme(
     text = element_text(family = "Dejavu Serif", face = "bold", color = "white"),
