@@ -1,0 +1,271 @@
+---
+title: "Exploring Ships in Star Wars"
+output: 
+  html_document: 
+    toc_float: TRUE
+    code_folding: hide
+---
+
+```{css}
+@import url('https://fonts.googleapis.com/css?family=Baloo');
+h1, h2 {
+  font-family: 'Baloo', cursive;
+}
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(rwars)
+library(ggrepel)
+library(readr)
+library(plotly)
+
+theme_sw <- function(){
+  theme(
+    text = element_text(family = "Dejavu Serif",
+                        face = "bold", color = "white"),
+    plot.background = element_rect(fill = "black"),
+    legend.background = element_rect(fill = "black"),
+    panel.background = element_rect(fill = "black"),
+    axis.text = element_text(color = "white"),
+    legend.key = element_rect(fill = "black", size = 0),
+    panel.grid.major = element_line(color = "darkgrey")
+  )
+}
+
+cols <- c("#418ff4", "#ffe81f", "#42bc46") #  blue / orange / green
+
+```
+
+```{r getdata, eval = FALSE}
+films <- rwars::get_all_films()$results
+
+#get_all_starships doesn't work :/
+#the ship ids are also not complete - there are gaps!
+#so we'll loop through potential ids and get the ships where they exist
+#not very efficient, but ok for a small API
+
+getDataRobust <- function(ids, f) {
+   
+   getSingle <- function(id, f) { 
+     tryCatch(f(id), error = function(e) { 
+      NULL
+     })
+   }
+   
+   all <- map(ids, ~getSingle(.x, f))
+   not_null <- all[!sapply(all, is.null)]
+   
+   not_null
+}
+
+
+ids <- 1:100
+ships <- getDataRobust(ids, get_starship)
+vehicles <- getDataRobust(ids, get_vehicle)
+
+# since we don't want to do this loop every time, lets save the intermediate results
+save(films, ships, vehicles, file = "sdata.Rdat")
+```
+
+```{r processdata}
+load("sdata.Rdat")
+episodes <- tibble(
+  title = map_chr(films, "title"),
+  episode = map_dbl(films, "episode_id"),
+  starships = map_dbl(films, ~length(.x$starships)),
+  vehicles = map_dbl(films, ~length(.x$vehicles)),
+  planets = map_dbl(films, ~length(.x$planets))
+)
+
+episodes <- episodes %>% 
+  mutate(ratio = starships / (vehicles + starships) * 100,
+         total = vehicles + starships,
+         label = paste0(title, "\n", vehicles," vehicles / ", starships, " starships")) %>% 
+  arrange(episode) %>% 
+  mutate(trilogy = c(rep("prequel", 3), rep("original", 3), rep("sequel", 1)))
+
+```
+
+One of the memorizing aspects of Star Wars is the number of spaceships. This report examines some characteristics of these ships. 
+
+The data for this report comes from [](SWAPI.co) and is accessed through the excellent [rwars package](github.com/ironholds/rwars).
+
+Throughout the analysis the [tidyverse](tidyverse.org) is used. As a few examples, in the code you'll see `ggplot2`, `dplyr::filter`, and `purr::map`.
+
+## A big imagination ... 
+
+Some ships we all probably know by heart. Picture Yoda raising the X-wing out of the swamp or Han racing off in the Millennium Falcon.
+
+Yet, the creators of Star Wars spent a good deal of time dreaming up ships and each episode contains a variety of unique ships.
+
+```{r}
+ggplot(episodes, aes(episode, total)) + 
+  geom_col(fill = cols[2]) +
+  geom_text(aes(label = total, y = total -1), color = "black") + 
+  theme_sw() + 
+  labs(
+    title = "Types of Ships",
+    x = "Episode",
+    y = ""
+  ) + 
+  scale_y_continuous(labels = NULL) +
+  scale_x_continuous(labels = c("I", "II", "III", "IV", "V", "VI", "VII"), breaks = 1:7, minor_breaks = NULL)
+```
+
+Interestingly, it appears that prequels followed a trend in the original 3 movies by introducing more ships over time.
+
+
+```{r shipinfo}
+pop_ships <- tibble(
+  name = map_chr(ships, "name"),
+  films = map_dbl(ships, ~length(.x$films))
+)
+
+pop_vehs <- tibble(
+  name = map_chr(vehicles, "name"),
+  films = map_dbl(vehicles, ~length(.x$films))
+)
+
+all <- rbind(pop_ships, pop_vehs)
+```
+
+
+This graph makes it tempting to jump to conclusions, but there are only `r nrow(all)` unique ships! Some of the ships appear in more than one episode. To get a sense for some of the most popular ships, we can count the number of movies per ship:
+
+
+```{r shipplot}
+pop_all <- rbind(pop_ships, pop_vehs) %>% 
+  filter(films > 1)
+
+ggplot(pop_all, aes(reorder(name, films), films)) + 
+  geom_col(fill = cols[3]) + 
+  coord_flip() + 
+  theme_sw() +
+  labs(
+    title = "Popular Ships",
+    y = "Number of Episodes with an Appearance",
+    x = ""
+  ) +
+  scale_y_continuous(minor_breaks = NULL) +
+  theme(
+    panel.grid.major.y = element_line(color = "black"),
+    panel.grid.minor.y = element_line(color = "black")
+  )
+```
+
+
+## How big is the death star?
+
+In addition to data on ship appearances by film, we also have data on ship characteristics such as size and shape. Using this data, lets try to get a sense for the scale of the infamous Death Star. 
+
+We start out small, looking at some familiar favorites such as the Millenium Falcon.
+
+```{r}
+ship_episode <- tibble(
+  crew = map_chr(ships, "crew") %>% parse_number(),
+  cost = map_chr(ships, "cost_in_credits") %>% parse_number(),
+  passengers = map_chr(ships, "passengers") %>% parse_number(),
+  cargo = map_chr(ships, "cargo_capacity") %>% parse_number(), 
+  name = map_chr(ships, "name")
+)
+
+plotShip <- function(data, outlier_bound = 10e100, label_bound = 0, main) {
+  
+  mf <- data %>% 
+    filter(name == "Millennium Falcon")
+  
+  data <- data %>% 
+    filter(crew < outlier_bound, passengers < outlier_bound) %>% 
+    filter(name != "Millennium Falcon")
+  
+  labels <- data %>% 
+    filter(crew > label_bound | passengers > label_bound)
+  
+  data %>% 
+    ggplot(aes(crew, passengers, label = name)) + 
+    geom_point(aes(size = cargo), color = "grey") +
+    labs(
+      title  = main,
+      y = "Number of Passengers",
+      x = "Number of Crew",
+      size = "Cargo Capacity"
+    ) + 
+    theme_sw() +
+    geom_text_repel(data = labels, color = "white") +
+    geom_text_repel(data = mf, color = cols[2])
+  
+}
+```
+
+```{r zoom1}
+plotShip(ship_episode, outlier_bound = 100, label_bound = 5, "Reasonable Size")
+```
+
+
+There appears to be a slight trend between the number of crew and the number of passengers, though the Rebel Transport and Sentinel-class landing craft throw things off. Keep your eye on Rebel Transport as we zoom out:
+
+```{r}
+plotShip(ship_episode, outlier_bound = 10e2, label_bound = 80, "Large High School")
+```
+Now we're introducing some bigger ships. But we can go BIGGER:
+
+```{r}
+plotShip(ship_episode, outlier_bound = 10e3, label_bound = 700, "Aircraft Carrier")
+```
+The Rebel Transport from our first plot is still visible in the lower left, but we've introduced ships much larger. The Republic Attack Cruiser presents an interesting mix of crew and passengers. Let's zoom out again:
+
+```{r}
+plotShip(ship_episode, outlier_bound = 10e4, label_bound = 7000, "Football Stadium")
+```
+
+Now the Republic Attack Cruiser looks small. We've introduced some fan favorites and the memorable Star Destroyer. While 50,000 crew members may seem like a lot, we are no where close to the Death Star:
+
+```{r}
+plotShip(ship_episode, label_bound = 10e3, main = "The State of Maine")
+```
+
+Don't miss the Star Destryer sitting in the lower left. The scale of the Death Star is hard to imagine! We've also introduced two other gigantic ships: the Droid Control Ship (no crew ...) and the Executor.
+
+## Hyperdrive
+
+The analysis so far has glossed over an important fact. There are two types of ships in Star Wars. A vehicle is a transport craft that **does not** have hyperdrive capability. A starship is a transport craft that **does** have hyperdrive.
+
+Ship|Hyperdrive?
+---|---
+starship | yes
+vehicle | no
+
+As the episodes progress, more of the ships have been starships as opposed to vehicles. This appears to be independent of the number of planets in the episode. 
+
+```{r}
+lab = tibble(
+  planets = rep(0,3),
+  label = c("Episode I-II", "Episode IV-VI", "Episode VII"),
+  ratio = c(58, 78, 98)
+)
+
+
+ggplot(episodes, aes(x = planets, y = ratio)) + 
+  geom_text(data = lab, aes(label = label), family = "Droid Sans", fontface = "bold",
+            color = cols) +
+  geom_point(aes(size = total),color = "darkgrey") +
+  geom_text_repel(aes(label = title, color = trilogy),
+                   nudge_y = 6 , family = "Droid Sans",
+                   color =c(rep(cols[2],3), rep(cols[1],3), cols[3])) +
+  labs(
+    title = "The Rise of Hyperdrive",
+    y = "Ships with Hyperdrive",
+    x = "Number of Planets",
+    size = "Number of Unique Ships"
+  ) +
+  scale_y_continuous(labels = function(x){paste(x,"%")}) +
+  scale_x_continuous(limits = c(-1.5, max(episodes$planets +1))) +
+  scale_fill_continuous(guide = FALSE) +
+  scale_color_manual(values  = cols, guide = FALSE) +
+  theme_sw()
+  
+
+```
