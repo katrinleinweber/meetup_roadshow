@@ -1,0 +1,132 @@
+---
+output: html_document
+params: 
+  character:
+    value: "Luke Skywalker"
+    label: "Select Character"
+    choices: !r purrr::map_chr(readRDS("people.Rds"), "name")
+    input: select
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(rwars)
+library(tidyverse)
+library(stringr)
+source("flickr_api.R")
+people <- readRDS("people.Rds")
+```
+
+```{css}
+@import url('https://fonts.googleapis.com/css?family=Baloo');
+h1, h2 {
+  font-family: 'Baloo', cursive;
+}
+```
+
+```{r getpeopledata, eval = FALSE}
+# this is how we get the option for the parameters
+getDataRobust <- function(ids, f) {
+   
+   getSingle <- function(id, f) { 
+     tryCatch(f(id), error = function(e) { 
+      NULL
+     })
+   }
+   
+   all <- map(ids, ~getSingle(.x, f))
+   not_null <- all[!sapply(all, is.null)]
+   
+   not_null
+}
+
+
+ids <- 1:100
+people <- getDataRobust(ids, get_person)
+saveRDS(people, file = "people.Rds")
+```
+
+
+# `r params$character` Quick Facts
+
+```{r flickr_photo}
+img_url <- flickr_photo_url(flickr_photos_search_one(params$character))
+```
+
+![](`r img_url`)
+
+```{r getcharacterdata}
+names <- people %>% 
+  map_chr("name")
+id <- which(names == params$character)
+char <- people[[id]]
+```
+
+## Appearance
+
+```{r appearance_species}
+species_id <- str_extract(char$species[[1]], "\\d")
+species <- get_species(species_id)
+species_home_id <-   str_extract(species$homeworld[[1]], "\\d")
+species_home <- get_planet(species_home_id)
+```
+
+`r params$character` is a `r char$gender` `r species$name`. Their average lifespan is `r species$average_lifespan`, they are `r species$designation` `r species$classification`s originally from `r species_home$name`. 
+
+
+`r species$name` | `r params$character`
+----|-----
+Hair | `r char$hair_color`
+Eyes | `r char$eye_color`
+Mass | `r char$mass`
+Height | `r char$height`
+Skin |  `r char$skin_color`
+
+## Homeworld
+
+```{r homeworld}
+home_id <-   str_extract(char$homeworld[[1]], "\\d")
+home <- get_planet(home_id)
+```
+
+`r params$character` is from `r home$name`.
+
+```{r flickr_photo2}
+img_url <- flickr_photo_url(flickr_photos_search_one(home$name))
+```
+
+![](`r img_url`)
+
+Home Planet | `r home$name`
+----|-----
+Length of Day | `r home$rotation_period`
+Length of Year | `r home$orbital_period`
+Climate | `r home$climate`
+Gravity | `r home$gravity`
+Terrain |  `r home$terrain`
+
+```{r homeworld2}
+residents <- map_chr(home$residents, 
+                     ~ str_extract(.x, "\\d") %>%
+                         get_person() %>%
+                         .$name) %>% 
+                      unique()
+```
+
+Other characters from `r home$name` include: `r residents[which(residents != params$character)]`
+
+## Films
+
+```{r getfilms}
+films <- map_chr(char$films, 
+                     ~ str_extract(.x, "\\d") %>%
+                         get_film() %>%
+                         .$title) %>% 
+                      unique()
+```
+
+`r params$character` appears in: 
+
+`r films`
+
+
