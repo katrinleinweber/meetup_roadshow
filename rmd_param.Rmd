@@ -1,5 +1,7 @@
 ---
-output: html_document
+output: 
+  html_document:
+    theme: journal
 params: 
   character:
     value: "Luke Skywalker"
@@ -10,19 +12,19 @@ params:
 
 ```{r setup, include=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(rwars)
-library(tidyverse)
+library(purrr)
+library(ggplot2)
 library(stringr)
+library(rwars)
+library(ggrepel)
+library(readr)
+library(plotly)
+library(tibble)
 source("flickr_api.R")
 people <- readRDS("people.Rds")
 ```
 
-```{css}
-@import url('https://fonts.googleapis.com/css?family=Baloo');
-h1, h2 {
-  font-family: 'Baloo', cursive;
-}
-```
+
 
 ```{r getpeopledata, eval = FALSE}
 # this is how we get the option for the parameters
