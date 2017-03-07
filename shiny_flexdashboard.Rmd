@@ -1,0 +1,183 @@
+---
+title: "Star Wars Vehicle Speed"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    css: flexdb.css
+runtime: shiny   
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(stringr)
+library(rwars)
+library(flexdashboard)
+library(DT)
+library(plotly)
+library(mice)
+library(ggfortify) # the tidyverse is extensible!
+load("sdata.Rdat")
+```
+
+```{r eval = FALSE}
+getDataRobust <- function(ids, f) {
+   
+   getSingle <- function(id, f) { 
+     tryCatch(f(id), error = function(e) { 
+      NULL
+     })
+   }
+   
+   all <- map(ids, ~getSingle(.x, f))
+   not_null <- all[!sapply(all, is.null)]
+   
+   not_null
+}
+
+
+ids <- 1:100
+ships <- getDataRobust(ids, get_starship)
+vehicles <- getDataRobust(ids, get_vehicle)
+
+# since we don't want to do this loop every time, lets save the intermediate results
+save(films, ships, vehicles, file = "sdata.Rdat")
+```
+
+```{r prepdata}
+# Create data frame from API results (list of lists)
+vehicle_df <- tibble(
+  name = map_chr(vehicles, "name"),
+  speed = map_chr(vehicles, "max_atmosphering_speed") %>% parse_number(),
+  crew = map_chr(vehicles, "crew") %>% parse_number(),
+  cost = map_chr(vehicles, "cost_in_credits") %>% parse_number(),
+  passengers = map_chr(vehicles, "passengers") %>% parse_number(),
+  cargo = map_chr(vehicles, "cargo_capacity") %>% parse_number(), 
+  length = map_chr(vehicles, "length") %>% parse_number()
+)
+
+# Exclude one vehicle with no data
+vehicle_df <- vehicle_df %>% 
+  filter(name != 'Emergency Firespeeder')
+
+```
+
+Inputs {.sidebar}
+----------------------
+
+Explore the various Star Wars vehicles.
+
+```{r}
+selectInput("x", "X Variable to Plot", choices = colnames(vehicle_df),  selected = 'cost')
+selectInput("y","Y Variable to Plot", choices = colnames(vehicle_df), selected  = 'speed')
+```
+
+***
+
+A linear model is fit between vehicle max speed and the other characteristics. The dashboard presents model residuals and leverage. Selecting vehicle names in the righthand table will re-fit the model with the selected vehcile(s) *excluded*. 
+
+**Technical Note**: The dataset includes many missing values. We use the `mice` package to impute missing values.
+
+```{r model, include = FALSE}
+model_data <- reactive({
+  
+  model_data <- vehicle_df
+  
+  # exclude the vehicles selected in the table
+  if (is.numeric(input$veh_list_rows_selected)) 
+    model_data <- vehicle_df[-input$veh_list_rows_selected,]  
+    
+  model_data
+  
+})
+
+model <- reactive({
+  # impute the remaining dataset
+  imputed <- model_data() %>% 
+    select(-name) %>% 
+    mice(seed = 500) %>% 
+    complete(5)
+  
+  # fit the linear model against the imputed dataset
+  m <- lm(speed ~ ., imputed)
+  m
+})
+```
+
+
+R Squared: `r renderText({ summary(model())$r.squared %>% round(2) })`
+
+
+Column {data-width=650 .tabset}
+-------------
+
+### Vehicle Characteristics
+
+```{r}
+# helper function
+to_label <- function(label) {
+  label %>% 
+    str_replace_all("_", " ") %>% 
+    str_to_title()
+}
+
+renderPlotly({
+  p <- ggplot(vehicle_df, aes_string(x = input$x, y = input$y, label = 'name')) + 
+    geom_point() +
+    geom_smooth() +
+    labs(
+      x = to_label(input$x),
+      y = to_label(input$y)
+    )
+  ggplotly(p, tooltip = 'name')
+})
+```
+
+### Model - Residuals
+
+```{r}
+renderPlot({
+  browser()
+  autoplot(model(), which = 1, data = model_data(), label.label = 'name', alpha = 0.4)
+})
+```
+
+### Model - Leverage
+
+```{r}
+renderPlot({
+  autoplot(model(), which = 6, data = model_data(), label.label = 'name', alpha = 0.4)
+})
+```
+
+### Model - Coefficients
+
+```{r}
+renderPrint({
+  cat(capture.output(summary(model())), sep = "\n")
+})
+```
+
+
+Column {data-width=350 .tabset}
+-----------------------------------------------------------------------
+
+### Select Vehicles To Exclude From Model
+
+```{r}
+dataTableOutput("veh_list")
+output$veh_list <- renderDataTable({
+  DT::datatable(vehicle_df %>% select(name), class = "compact",
+    fillContainer = TRUE, options = list(bPaginate = FALSE))
+})
+
+```
+
+### Vehicle Attributes
+
+```{r}
+renderDataTable({
+  DT::datatable(vehicle_df, fillContainer = TRUE,
+    class = "compact", options = list(bPaginate = FALSE))
+})
+```
