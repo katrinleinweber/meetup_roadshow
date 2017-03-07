@@ -1,27 +1,34 @@
 Package: purrr
 Title: Functional Programming Tools
-Version: 0.2.2
+Version: 0.2.2.9000
 Authors@R: c( person("Hadley", "Wickham", , "hadley@rstudio.com",
     c("aut", "cre")), person("Lionel", "Henry", ,
     "lionel.hry@gmail.com", "ctb"), person("RStudio", role = "cph") )
 Description: Make your pure functions purr with the 'purrr' package.
     This package completes R's functional programming tools with
     missing features present in other programming languages.
-License: GPL-3 | file LICENSE
-LazyData: true
-Imports: magrittr (>= 1.5), dplyr (>= 0.4.3), Rcpp, lazyeval (>= 0.2.0)
-Suggests: testthat, covr
-LinkingTo: Rcpp, dplyr, BH
 URL: https://github.com/hadley/purrr
 BugReports: https://github.com/hadley/purrr/issues
-RoxygenNote: 5.0.1
-NeedsCompilation: yes
-Packaged: 2016-06-17 22:17:44 UTC; hadley
+License: GPL-3 | file LICENSE
+LazyData: true
+Imports: magrittr (>= 1.5), tibble, rlang
+Suggests: covr, dplyr (>= 0.4.3), testthat,
+Remotes: hadley/rlang
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
 Author: Hadley Wickham [aut, cre], Lionel Henry [ctb], RStudio [cph]
 Maintainer: Hadley Wickham <hadley@rstudio.com>
-Repository: CRAN
-Date/Publication: 2016-06-18 10:05:18
-Built: R 3.2.5; x86_64-pc-linux-gnu; 2017-02-23 22:31:35 UTC; unix
+Built: R 3.2.5; x86_64-pc-linux-gnu; 2017-03-07 03:19:16 UTC; unix
+RemoteType: github
+RemoteHost: https://api.github.com
+RemoteRepo: purrr
+RemoteUsername: hadley
+RemoteRef: master
+RemoteSha: 0f5a993f4427be857bc5b008a2e3f04a430526ea
+GithubRepo: purrr
+GithubUsername: hadley
+GithubRef: master
+GithubSHA1: 0f5a993f4427be857bc5b008a2e3f04a430526ea
 InstallAgent: packrat 0.4.8.1
-InstallSource: CRAN
-Hash: 114c8db8869ed93e5cc15dc5495440a0
+InstallSource: github
+Hash: b729493cb2c56c50e619b013cc125b8b

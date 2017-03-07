@@ -11,7 +11,7 @@
 <div style="text-align: center;">
 <a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
 <a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
-</div><h2>Documentation for package &lsquo;purrr&rsquo; version 0.2.2</h2>
+</div><h2>Documentation for package &lsquo;purrr&rsquo; version 0.2.2.9000</h2>
 
 <ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
 </ul>
@@ -62,13 +62,23 @@
 <tr><td style="width: 25%;"><a href="array-coercion.html">array_tree</a></td>
 <td>Coerce array to list</td></tr>
 <tr><td style="width: 25%;"><a href="as_function.html">as_function</a></td>
-<td>Convert an object into a function.</td></tr>
+<td>Convert an object into a function</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">as_function.attr</a></td>
+<td>Convert an object into a function</td></tr>
 <tr><td style="width: 25%;"><a href="as_function.html">as_function.character</a></td>
-<td>Convert an object into a function.</td></tr>
+<td>Convert an object into a function</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">as_function.formula</a></td>
+<td>Convert an object into a function</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">as_function.function</a></td>
+<td>Convert an object into a function</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">as_function.list</a></td>
+<td>Convert an object into a function</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">as_function.numeric</a></td>
+<td>Convert an object into a function</td></tr>
 <tr><td style="width: 25%;"><a href="as_vector.html">as_vector</a></td>
 <td>Coerce a list to a vector</td></tr>
-<tr><td style="width: 25%;"><a href="at_depth.html">at_depth</a></td>
-<td>Map a function over lower levels of a nested list</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">at_depth</a></td>
+<td>Modify elements "in-place"</td></tr>
 </table>
 
 <h2><a name="B">-- B --</a></h2>
@@ -76,10 +86,6 @@
 <table width="100%">
 <tr><td style="width: 25%;"><a href="bare-type-predicates.html">bare-type-predicates</a></td>
 <td>Bare type predicates</td></tr>
-<tr><td style="width: 25%;"><a href="by_row.html">by_row</a></td>
-<td>Apply a function to each row of a data frame</td></tr>
-<tr><td style="width: 25%;"><a href="by_slice.html">by_slice</a></td>
-<td>Apply a function to slices of a data frame</td></tr>
 </table>
 
 <h2><a name="C">-- C --</a></h2>
@@ -89,35 +95,33 @@
 <td>Keep or discard elements using a predicate function.</td></tr>
 <tr><td style="width: 25%;"><a href="compose.html">compose</a></td>
 <td>Compose multiple functions</td></tr>
-<tr><td style="width: 25%;"><a href="conditional-map.html">conditional-map</a></td>
-<td>Modify elements conditionally</td></tr>
 <tr><td style="width: 25%;"><a href="contains.html">contains</a></td>
 <td>Does a list contain an object?</td></tr>
-<tr><td style="width: 25%;"><a href="cross_n.html">cross2</a></td>
+<tr><td style="width: 25%;"><a href="cross.html">cross</a></td>
 <td>Produce all combinations of list elements</td></tr>
-<tr><td style="width: 25%;"><a href="cross_n.html">cross3</a></td>
+<tr><td style="width: 25%;"><a href="cross.html">cross2</a></td>
 <td>Produce all combinations of list elements</td></tr>
-<tr><td style="width: 25%;"><a href="cross_n.html">cross_d</a></td>
+<tr><td style="width: 25%;"><a href="cross.html">cross3</a></td>
 <td>Produce all combinations of list elements</td></tr>
-<tr><td style="width: 25%;"><a href="cross_n.html">cross_n</a></td>
+<tr><td style="width: 25%;"><a href="cross.html">cross_d</a></td>
+<td>Produce all combinations of list elements</td></tr>
+<tr><td style="width: 25%;"><a href="cross.html">cross_df</a></td>
+<td>Produce all combinations of list elements</td></tr>
+<tr><td style="width: 25%;"><a href="cross.html">cross_n</a></td>
 <td>Produce all combinations of list elements</td></tr>
 </table>
 
 <h2><a name="D">-- D --</a></h2>
 
 <table width="100%">
+<tr><td style="width: 25%;"><a href="depth.html">depth</a></td>
+<td>Compute the depth of a vector</td></tr>
 <tr><td style="width: 25%;"><a href="detect.html">detect</a></td>
 <td>Find the value or position of the first match.</td></tr>
 <tr><td style="width: 25%;"><a href="detect.html">detect_index</a></td>
 <td>Find the value or position of the first match.</td></tr>
 <tr><td style="width: 25%;"><a href="keep.html">discard</a></td>
 <td>Keep or discard elements using a predicate function.</td></tr>
-<tr><td style="width: 25%;"><a href="dmap.html">dmap</a></td>
-<td>Map over the columns of a data frame</td></tr>
-<tr><td style="width: 25%;"><a href="dmap.html">dmap_at</a></td>
-<td>Map over the columns of a data frame</td></tr>
-<tr><td style="width: 25%;"><a href="dmap.html">dmap_if</a></td>
-<td>Map over the columns of a data frame</td></tr>
 </table>
 
 <h2><a name="E">-- E --</a></h2>
@@ -149,6 +153,8 @@
 <table width="100%">
 <tr><td style="width: 25%;"><a href="get-attr.html">get-attr</a></td>
 <td>Infix attribute accessor</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">get_attr</a></td>
+<td>Convert an object into a function</td></tr>
 </table>
 
 <h2><a name="H">-- H --</a></h2>
@@ -161,6 +167,18 @@
 <h2><a name="I">-- I --</a></h2>
 
 <table width="100%">
+<tr><td style="width: 25%;"><a href="imap.html">imap</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
+<tr><td style="width: 25%;"><a href="imap.html">imap_chr</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
+<tr><td style="width: 25%;"><a href="imap.html">imap_dbl</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
+<tr><td style="width: 25%;"><a href="imap.html">imap_df</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
+<tr><td style="width: 25%;"><a href="imap.html">imap_int</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
+<tr><td style="width: 25%;"><a href="imap.html">imap_lgl</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
 <tr><td style="width: 25%;"><a href="invoke.html">invoke</a></td>
 <td>Invoke functions.</td></tr>
 <tr><td style="width: 25%;"><a href="invoke.html">invoke_map</a></td>
@@ -175,8 +193,6 @@
 <td>Invoke functions.</td></tr>
 <tr><td style="width: 25%;"><a href="invoke.html">invoke_map_lgl</a></td>
 <td>Invoke functions.</td></tr>
-<tr><td style="width: 25%;"><a href="by_row.html">invoke_rows</a></td>
-<td>Apply a function to each row of a data frame</td></tr>
 <tr><td style="width: 25%;"><a href="type-predicates.html">is_atomic</a></td>
 <td>Type predicates</td></tr>
 <tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_atomic</a></td>
@@ -233,6 +249,8 @@
 <td>Scalar type predicates</td></tr>
 <tr><td style="width: 25%;"><a href="type-predicates.html">is_vector</a></td>
 <td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="imap.html">iwalk</a></td>
+<td>Apply a function to each element of a vector, and its index</td></tr>
 </table>
 
 <h2><a name="K">-- K --</a></h2>
@@ -286,10 +304,8 @@
 <td>Map over multiple inputs simultaneously.</td></tr>
 <tr><td style="width: 25%;"><a href="map2.html">map2_lgl</a></td>
 <td>Map over multiple inputs simultaneously.</td></tr>
-<tr><td style="width: 25%;"><a href="map2.html">map3</a></td>
-<td>Map over multiple inputs simultaneously.</td></tr>
-<tr><td style="width: 25%;"><a href="conditional-map.html">map_at</a></td>
-<td>Modify elements conditionally</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">map_at</a></td>
+<td>Modify elements "in-place"</td></tr>
 <tr><td style="width: 25%;"><a href="invoke.html">map_call</a></td>
 <td>Invoke functions.</td></tr>
 <tr><td style="width: 25%;"><a href="map.html">map_chr</a></td>
@@ -298,16 +314,20 @@
 <td>Apply a function to each element of a vector</td></tr>
 <tr><td style="width: 25%;"><a href="map.html">map_df</a></td>
 <td>Apply a function to each element of a vector</td></tr>
-<tr><td style="width: 25%;"><a href="conditional-map.html">map_if</a></td>
-<td>Modify elements conditionally</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">map_if</a></td>
+<td>Modify elements "in-place"</td></tr>
 <tr><td style="width: 25%;"><a href="map.html">map_int</a></td>
 <td>Apply a function to each element of a vector</td></tr>
 <tr><td style="width: 25%;"><a href="map.html">map_lgl</a></td>
 <td>Apply a function to each element of a vector</td></tr>
-<tr><td style="width: 25%;"><a href="map2.html">map_n</a></td>
-<td>Map over multiple inputs simultaneously.</td></tr>
-<tr><td style="width: 25%;"><a href="by_row.html">map_rows</a></td>
-<td>Apply a function to each row of a data frame</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify</a></td>
+<td>Modify elements "in-place"</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify_at</a></td>
+<td>Modify elements "in-place"</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify_depth</a></td>
+<td>Modify elements "in-place"</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify_if</a></td>
+<td>Modify elements "in-place"</td></tr>
 </table>
 
 <h2><a name="N">-- N --</a></h2>
@@ -388,8 +408,6 @@
 <td>Coerce a list to a vector</td></tr>
 <tr><td style="width: 25%;"><a href="as_vector.html">simplify_all</a></td>
 <td>Coerce a list to a vector</td></tr>
-<tr><td style="width: 25%;"><a href="slice_rows.html">slice_rows</a></td>
-<td>Slice a data frame into groups of rows</td></tr>
 <tr><td style="width: 25%;"><a href="every.html">some</a></td>
 <td>Do every or some elements of a list satisfy a predicate?</td></tr>
 <tr><td style="width: 25%;"><a href="split_by.html">sort_by</a></td>
@@ -414,8 +432,6 @@
 <h2><a name="U">-- U --</a></h2>
 
 <table width="100%">
-<tr><td style="width: 25%;"><a href="slice_rows.html">unslice</a></td>
-<td>Slice a data frame into groups of rows</td></tr>
 <tr><td style="width: 25%;"><a href="update_list.html">update_list</a></td>
 <td>Modify a list</td></tr>
 </table>
@@ -426,10 +442,6 @@
 <tr><td style="width: 25%;"><a href="map.html">walk</a></td>
 <td>Apply a function to each element of a vector</td></tr>
 <tr><td style="width: 25%;"><a href="map2.html">walk2</a></td>
-<td>Map over multiple inputs simultaneously.</td></tr>
-<tr><td style="width: 25%;"><a href="map2.html">walk3</a></td>
-<td>Map over multiple inputs simultaneously.</td></tr>
-<tr><td style="width: 25%;"><a href="map2.html">walk_n</a></td>
 <td>Map over multiple inputs simultaneously.</td></tr>
 <tr><td style="width: 25%;"><a href="when.html">when</a></td>
 <td>Match/validate a set of conditions for an object and continue with the action associated with the first valid match.</td></tr>

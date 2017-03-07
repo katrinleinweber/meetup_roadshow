@@ -1,0 +1,769 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Tools for Language Objects and Evaluation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Tools for Language Objects and Evaluation
+<img class="toplogo" src="../../../doc/html/logo.jpg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;rlang&rsquo; version 0.0.0.9000</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<p style="text-align: center;">
+<a href="#A">A</a>
+<a href="#B">B</a>
+<a href="#C">C</a>
+<a href="#D">D</a>
+<a href="#E">E</a>
+<a href="#F">F</a>
+<a href="#G">G</a>
+<a href="#H">H</a>
+<a href="#I">I</a>
+<a href="#L">L</a>
+<a href="#M">M</a>
+<a href="#N">N</a>
+<a href="#O">O</a>
+<a href="#P">P</a>
+<a href="#R">R</a>
+<a href="#S">S</a>
+<a href="#T">T</a>
+<a href="#U">U</a>
+<a href="#W">W</a>
+<a href="#misc">misc</a>
+</p>
+
+
+<h2><a name="A">-- A --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="abort.html">abort</a></td>
+<td>Signal an error, warning, or message.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">are_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="arg_inspect.html">arg_inspect</a></td>
+<td>Inspect an argument</td></tr>
+<tr><td style="width: 25%;"><a href="arg_inspect.html">arg_inspect_</a></td>
+<td>Inspect an argument</td></tr>
+<tr><td style="width: 25%;"><a href="arg_missing.html">arg_missing</a></td>
+<td>Generate or handle a missing argument</td></tr>
+<tr><td style="width: 25%;"><a href="as_bytes.html">as_bytes</a></td>
+<td>Coerce to a raw vector.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_character</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="as_closure.html">as_closure</a></td>
+<td>Convert to closure.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_complex</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_double</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="as_env.html">as_env</a></td>
+<td>Coerce to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="as_env.html">as_env.character</a></td>
+<td>Coerce to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="as_env.html">as_env.default</a></td>
+<td>Coerce to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="as_env.html">as_env.environment</a></td>
+<td>Coerce to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="as_env.html">as_env.NULL</a></td>
+<td>Coerce to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="as_function.html">as_function</a></td>
+<td>Coerce to function.</td></tr>
+<tr><td style="width: 25%;"><a href="set_expr.html">as_generic_expr</a></td>
+<td>Set and get an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_integer</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="as_symbol.html">as_lang</a></td>
+<td>Coerce an object to a name or call.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_list</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_logical</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="as_symbol.html">as_name</a></td>
+<td>Coerce an object to a name or call.</td></tr>
+<tr><td style="width: 25%;"><a href="as_utf8_character.html">as_native_character</a></td>
+<td>Coerce to a character vector and attempt encoding conversion.</td></tr>
+<tr><td style="width: 25%;"><a href="as_utf8_character.html">as_native_string</a></td>
+<td>Coerce to a character vector and attempt encoding conversion.</td></tr>
+<tr><td style="width: 25%;"><a href="as_pairlist.html">as_pairlist</a></td>
+<td>Coerce to pairlist.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">as_string</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="as_symbol.html">as_symbol</a></td>
+<td>Coerce an object to a name or call.</td></tr>
+<tr><td style="width: 25%;"><a href="as_tidy_quote.html">as_tidy_quote</a></td>
+<td>Coerce expressions to a tidy formula quote.</td></tr>
+<tr><td style="width: 25%;"><a href="as_utf8_character.html">as_utf8_character</a></td>
+<td>Coerce to a character vector and attempt encoding conversion.</td></tr>
+<tr><td style="width: 25%;"><a href="as_utf8_character.html">as_utf8_string</a></td>
+<td>Coerce to a character vector and attempt encoding conversion.</td></tr>
+</table>
+
+<h2><a name="B">-- B --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">bare-type-predicates</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">base_env</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="bytes.html">bytes</a></td>
+<td>Create a raw vector.</td></tr>
+</table>
+
+<h2><a name="C">-- C --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="caller_env.html">caller_env</a></td>
+<td>Get the environment of the caller frame.</td></tr>
+<tr><td style="width: 25%;"><a href="caller_env.html">caller_fn</a></td>
+<td>Get the environment of the caller frame.</td></tr>
+<tr><td style="width: 25%;"><a href="caller_env.html">caller_frame</a></td>
+<td>Get the environment of the caller frame.</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">call_depth</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">call_frame</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="call_inspect.html">call_inspect</a></td>
+<td>Inspect a call.</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">call_stack</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="env.html">child_env</a></td>
+<td>Get an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="string.html">chr</a></td>
+<td>Construct a character vector or a string.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">chr_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="chr_set_encoding.html">chr_encoding</a></td>
+<td>Set encoding of a string or character vector.</td></tr>
+<tr><td style="width: 25%;"><a href="chr_set_encoding.html">chr_set_encoding</a></td>
+<td>Set encoding of a string or character vector.</td></tr>
+<tr><td style="width: 25%;"><a href="cnd_signal.html">cnd_abort</a></td>
+<td>Signal a condition.</td></tr>
+<tr><td style="width: 25%;"><a href="new_cnd.html">cnd_error</a></td>
+<td>Create a condition object.</td></tr>
+<tr><td style="width: 25%;"><a href="new_cnd.html">cnd_message</a></td>
+<td>Create a condition object.</td></tr>
+<tr><td style="width: 25%;"><a href="cnd_signal.html">cnd_signal</a></td>
+<td>Signal a condition.</td></tr>
+<tr><td style="width: 25%;"><a href="new_cnd.html">cnd_warning</a></td>
+<td>Create a condition object.</td></tr>
+<tr><td style="width: 25%;"><a href="switch_lang.html">coerce_lang</a></td>
+<td>Dispatch on call type.</td></tr>
+<tr><td style="width: 25%;"><a href="switch_type.html">coerce_type</a></td>
+<td>Dispatch on base types.</td></tr>
+<tr><td style="width: 25%;"><a href="coercion.html">coercion</a></td>
+<td>Coerce an object to a base type.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">cpl_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">current_frame</a></td>
+<td>Call stack information</td></tr>
+</table>
+
+<h2><a name="D">-- D --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="tidy_eval.html">data_source</a></td>
+<td>Evaluate a formula</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">dbl_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="frame_dots.html">dots</a></td>
+<td>Extract dots</td></tr>
+<tr><td style="width: 25%;"><a href="dots_inspect.html">dots_inspect</a></td>
+<td>Inspect dots</td></tr>
+<tr><td style="width: 25%;"><a href="dots_inspect.html">dots_inspect_</a></td>
+<td>Inspect dots</td></tr>
+<tr><td style="width: 25%;"><a href="frame_dots.html">dots_node</a></td>
+<td>Extract dots</td></tr>
+<tr><td style="width: 25%;"><a href="duplicate.html">duplicate</a></td>
+<td>Duplicate an R object.</td></tr>
+</table>
+
+<h2><a name="E">-- E --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="empty_env.html">empty_env</a></td>
+<td>Get the empty environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env.html">env</a></td>
+<td>Get an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env-set.html">env&lt;-</a></td>
+<td>Assignment operator for environments.</td></tr>
+<tr><td style="width: 25%;"><a href="env_assign.html">env_assign</a></td>
+<td>Assign objects to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_assign_promise.html">env_assign_promise</a></td>
+<td>Assign a promise to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_assign_promise.html">env_assign_promise_</a></td>
+<td>Assign a promise to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_assign.html">env_bind</a></td>
+<td>Assign objects to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_bury.html">env_bury</a></td>
+<td>Bury bindings and define objects in new scope.</td></tr>
+<tr><td style="width: 25%;"><a href="env_clone.html">env_clone</a></td>
+<td>Clone an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_assign.html">env_define</a></td>
+<td>Assign objects to an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_get.html">env_get</a></td>
+<td>Get an object from an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_has.html">env_has</a></td>
+<td>Does an environment have or see bindings?</td></tr>
+<tr><td style="width: 25%;"><a href="env.html">env_parent</a></td>
+<td>Get an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_set.html">env_set</a></td>
+<td>Set an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_set.html">env_set.environment</a></td>
+<td>Set an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_set.html">env_set.formula</a></td>
+<td>Set an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_set.html">env_set.function</a></td>
+<td>Set an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_set.html">env_set_parent</a></td>
+<td>Set an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env.html">env_tail</a></td>
+<td>Get an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="env_unbind.html">env_unbind</a></td>
+<td>Remove bindings from an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">eval_depth</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">eval_frame</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">eval_stack</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="exiting.html">exiting</a></td>
+<td>Create an exiting or in place handler.</td></tr>
+<tr><td style="width: 25%;"><a href="expr_eval.html">expr_eval</a></td>
+<td>Evaluate an expression in an environment.</td></tr>
+<tr><td style="width: 25%;"><a href="expr_label.html">expr_label</a></td>
+<td>Turn an expression to a label.</td></tr>
+<tr><td style="width: 25%;"><a href="expr_label.html">expr_text</a></td>
+<td>Turn an expression to a label.</td></tr>
+</table>
+
+<h2><a name="F">-- F --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="fn_env.html">fn_env</a></td>
+<td>Return the closure environment of a function.</td></tr>
+<tr><td style="width: 25%;"><a href="fn_env.html">fn_env&lt;-</a></td>
+<td>Return the closure environment of a function.</td></tr>
+<tr><td style="width: 25%;"><a href="fn_fmls.html">fn_fmls</a></td>
+<td>Extract arguments from a function</td></tr>
+<tr><td style="width: 25%;"><a href="fn_fmls.html">fn_fmls_names</a></td>
+<td>Extract arguments from a function</td></tr>
+<tr><td style="width: 25%;"><a href="frame_dots.html">frame_dots</a></td>
+<td>Extract dots</td></tr>
+<tr><td style="width: 25%;"><a href="frame_dots.html">frame_dots_node</a></td>
+<td>Extract dots</td></tr>
+<tr><td style="width: 25%;"><a href="frame_position.html">frame_position</a></td>
+<td>Find the position or distance of a frame on the evaluation stack.</td></tr>
+<tr><td style="width: 25%;"><a href="f_rhs.html">f_env</a></td>
+<td>Get/set formula components.</td></tr>
+<tr><td style="width: 25%;"><a href="f_rhs.html">f_env&lt;-</a></td>
+<td>Get/set formula components.</td></tr>
+<tr><td style="width: 25%;"><a href="f_text.html">f_label</a></td>
+<td>Turn RHS of formula into a string/label.</td></tr>
+<tr><td style="width: 25%;"><a href="f_rhs.html">f_lhs</a></td>
+<td>Get/set formula components.</td></tr>
+<tr><td style="width: 25%;"><a href="f_rhs.html">f_lhs&lt;-</a></td>
+<td>Get/set formula components.</td></tr>
+<tr><td style="width: 25%;"><a href="f_rhs.html">f_rhs</a></td>
+<td>Get/set formula components.</td></tr>
+<tr><td style="width: 25%;"><a href="f_rhs.html">f_rhs&lt;-</a></td>
+<td>Get/set formula components.</td></tr>
+<tr><td style="width: 25%;"><a href="f_text.html">f_text</a></td>
+<td>Turn RHS of formula into a string/label.</td></tr>
+<tr><td style="width: 25%;"><a href="f_unwrap.html">f_unwrap</a></td>
+<td>Unwrap a formula</td></tr>
+</table>
+
+<h2><a name="G">-- G --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="set_expr.html">get_expr</a></td>
+<td>Set and get an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">global_env</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">global_frame</a></td>
+<td>Call stack information</td></tr>
+</table>
+
+<h2><a name="H">-- H --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="has_length.html">has_length</a></td>
+<td>How long is an object?</td></tr>
+<tr><td style="width: 25%;"><a href="has_name.html">has_name</a></td>
+<td>Does an object have an element with this name?</td></tr>
+<tr><td style="width: 25%;"><a href="is_named.html">have_names</a></td>
+<td>Is object named?</td></tr>
+</table>
+
+<h2><a name="I">-- I --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="abort.html">inform</a></td>
+<td>Signal an error, warning, or message.</td></tr>
+<tr><td style="width: 25%;"><a href="exiting.html">inplace</a></td>
+<td>Create an exiting or in place handler.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">int_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="invoke.html">invoke</a></td>
+<td>Invoke a function with a list of arguments.</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_atomic</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_atomic</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_bytes</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_character</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_double</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_env.html">is_bare_env</a></td>
+<td>Is object an environment?</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_integer</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_integerish.html">is_bare_integerish</a></td>
+<td>Is a vector integer-like?</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_list</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_logical</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_numeric</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_raw</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_string</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="bare-type-predicates.html">is_bare_vector</a></td>
+<td>Bare type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_lang.html">is_binary_lang</a></td>
+<td>Is object a call (language type)?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_bytes</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_stack.html">is_call_stack</a></td>
+<td>Is object a stack?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_character</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">is_chr_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="is_function.html">is_closure</a></td>
+<td>Is object a function?</td></tr>
+<tr><td style="width: 25%;"><a href="is_condition.html">is_condition</a></td>
+<td>Is object a condition?</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">is_cpl_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">is_dbl_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="op-definition.html">is_definition</a></td>
+<td>Definition operator.</td></tr>
+<tr><td style="width: 25%;"><a href="is_named.html">is_dictionary</a></td>
+<td>Is object named?</td></tr>
+<tr><td style="width: 25%;"><a href="is_dot_symbol.html">is_dot_symbol</a></td>
+<td>Is object a ..n symbol?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_double</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_empty.html">is_empty</a></td>
+<td>Is object an empty vector or NULL?</td></tr>
+<tr><td style="width: 25%;"><a href="is_env.html">is_env</a></td>
+<td>Is object an environment?</td></tr>
+<tr><td style="width: 25%;"><a href="is_stack.html">is_eval_stack</a></td>
+<td>Is object a stack?</td></tr>
+<tr><td style="width: 25%;"><a href="is_expr.html">is_expr</a></td>
+<td>Is an object an expression?</td></tr>
+<tr><td style="width: 25%;"><a href="is_true.html">is_false</a></td>
+<td>Is object identical to TRUE or FALSE?</td></tr>
+<tr><td style="width: 25%;"><a href="is_formula.html">is_formula</a></td>
+<td>Is object a formula?</td></tr>
+<tr><td style="width: 25%;"><a href="is_frame.html">is_frame</a></td>
+<td>Is object a frame?</td></tr>
+<tr><td style="width: 25%;"><a href="is_function.html">is_function</a></td>
+<td>Is object a function?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_integer</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_integerish.html">is_integerish</a></td>
+<td>Is a vector integer-like?</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">is_int_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="is_lang.html">is_lang</a></td>
+<td>Is object a call (language type)?</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">is_lgl_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_list</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_logical</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="arg_missing.html">is_missing</a></td>
+<td>Generate or handle a missing argument</td></tr>
+<tr><td style="width: 25%;"><a href="are_na.html">is_na</a></td>
+<td>Test for missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="is_named.html">is_named</a></td>
+<td>Is object named?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_null</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_expr.html">is_pairlist</a></td>
+<td>Is an object an expression?</td></tr>
+<tr><td style="width: 25%;"><a href="is_expr.html">is_parsable_literal</a></td>
+<td>Is an object an expression?</td></tr>
+<tr><td style="width: 25%;"><a href="is_function.html">is_primitive</a></td>
+<td>Is object a function?</td></tr>
+<tr><td style="width: 25%;"><a href="is_function.html">is_primitive_eager</a></td>
+<td>Is object a function?</td></tr>
+<tr><td style="width: 25%;"><a href="is_function.html">is_primitive_lazy</a></td>
+<td>Is object a function?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_raw</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_atomic</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_bytes</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_character</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_double</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_integer</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_integerish.html">is_scalar_integerish</a></td>
+<td>Is a vector integer-like?</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_list</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_logical</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_raw</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_scalar_vector</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">is_scoped</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="is_stack.html">is_stack</a></td>
+<td>Is object a stack?</td></tr>
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">is_string</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="is_expr.html">is_symbol</a></td>
+<td>Is an object an expression?</td></tr>
+<tr><td style="width: 25%;"><a href="is_expr.html">is_symbolic</a></td>
+<td>Is an object an expression?</td></tr>
+<tr><td style="width: 25%;"><a href="as_tidy_quote.html">is_tidy_quote</a></td>
+<td>Coerce expressions to a tidy formula quote.</td></tr>
+<tr><td style="width: 25%;"><a href="as_tidy_quote.html">is_tquote</a></td>
+<td>Coerce expressions to a tidy formula quote.</td></tr>
+<tr><td style="width: 25%;"><a href="is_true.html">is_true</a></td>
+<td>Is object identical to TRUE or FALSE?</td></tr>
+<tr><td style="width: 25%;"><a href="is_lang.html">is_unary_lang</a></td>
+<td>Is object a call (language type)?</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">is_vector</a></td>
+<td>Type predicates</td></tr>
+</table>
+
+<h2><a name="L">-- L --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="lang.html">lang</a></td>
+<td>Create a call by "hand"</td></tr>
+<tr><td style="width: 25%;"><a href="lang_args.html">lang_args</a></td>
+<td>Extract arguments from a call</td></tr>
+<tr><td style="width: 25%;"><a href="lang_args.html">lang_args_names</a></td>
+<td>Extract arguments from a call</td></tr>
+<tr><td style="width: 25%;"><a href="lang_fn.html">lang_fn</a></td>
+<td>Extract function from a call</td></tr>
+<tr><td style="width: 25%;"><a href="lang_head.html">lang_head</a></td>
+<td>Return the head or tail of a call object.</td></tr>
+<tr><td style="width: 25%;"><a href="lang_homogenise.html">lang_homogenise</a></td>
+<td>Standardise a call against formal arguments.</td></tr>
+<tr><td style="width: 25%;"><a href="lang_modify.html">lang_modify</a></td>
+<td>Modify the arguments of a call.</td></tr>
+<tr><td style="width: 25%;"><a href="lang_name.html">lang_name</a></td>
+<td>Extract function name of a call</td></tr>
+<tr><td style="width: 25%;"><a href="lang_standardise.html">lang_standardise</a></td>
+<td>Standardise a call.</td></tr>
+<tr><td style="width: 25%;"><a href="lang_head.html">lang_tail</a></td>
+<td>Return the head or tail of a call object.</td></tr>
+<tr><td style="width: 25%;"><a href="switch_lang.html">lang_type_of</a></td>
+<td>Dispatch on call type.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">lgl_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="with_env.html">locally</a></td>
+<td>Evaluate an expression within a given environment.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">lst_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+</table>
+
+<h2><a name="M">-- M --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="arg_missing.html">maybe_missing</a></td>
+<td>Generate or handle a missing argument</td></tr>
+<tr><td style="width: 25%;"><a href="missing.html">missing</a></td>
+<td>Missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="modify.html">modify</a></td>
+<td>Modify a vector.</td></tr>
+</table>
+
+<h2><a name="N">-- N --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="names2.html">names2</a></td>
+<td>Get names of a vector.</td></tr>
+<tr><td style="width: 25%;"><a href="missing.html">na_chr</a></td>
+<td>Missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="missing.html">na_cpl</a></td>
+<td>Missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="missing.html">na_dbl</a></td>
+<td>Missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="missing.html">na_int</a></td>
+<td>Missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="missing.html">na_lgl</a></td>
+<td>Missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new-vectors</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_chr</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new_cnd.html">new_cnd</a></td>
+<td>Create a condition object.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_cpl</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_dbl</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="op-definition.html">new_definition</a></td>
+<td>Definition operator.</td></tr>
+<tr><td style="width: 25%;"><a href="new_fn.html">new_fn</a></td>
+<td>Create a function by "hand"</td></tr>
+<tr><td style="width: 25%;"><a href="new_formula.html">new_formula</a></td>
+<td>Create a formula object by "hand".</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_int</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_lgl</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_lst</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new-vectors.html">new_raw</a></td>
+<td>Create new vectors.</td></tr>
+<tr><td style="width: 25%;"><a href="new_tidy_quote.html">new_tidy_quote</a></td>
+<td>Create a tidy quote by hand.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_caar</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_cadr</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_car</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_cdar</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_cddr</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_cdr</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">node_tag</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="ns_env.html">ns_env</a></td>
+<td>Get the namespace of a package.</td></tr>
+<tr><td style="width: 25%;"><a href="ns_env.html">ns_env_name</a></td>
+<td>Get the namespace of a package.</td></tr>
+<tr><td style="width: 25%;"><a href="ns_env.html">ns_imports_env</a></td>
+<td>Get the namespace of a package.</td></tr>
+</table>
+
+<h2><a name="O">-- O --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="op-definition.html">op-definition</a></td>
+<td>Definition operator.</td></tr>
+<tr><td style="width: 25%;"><a href="op-get-attr.html">op-get-attr</a></td>
+<td>Infix attribute accessor.</td></tr>
+<tr><td style="width: 25%;"><a href="op-na-default.html">op-na-default</a></td>
+<td>Replace missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="op-null-default.html">op-null-default</a></td>
+<td>Default value for 'NULL'.</td></tr>
+</table>
+
+<h2><a name="P">-- P --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="pairlist.html">pairlist</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="parse_expr.html">parse_expr</a></td>
+<td>Parse R code.</td></tr>
+<tr><td style="width: 25%;"><a href="parse_expr.html">parse_exprs</a></td>
+<td>Parse R code.</td></tr>
+<tr><td style="width: 25%;"><a href="parse_expr.html">parse_f</a></td>
+<td>Parse R code.</td></tr>
+<tr><td style="width: 25%;"><a href="parse_expr.html">parse_fs</a></td>
+<td>Parse R code.</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">pkg_env</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">pkg_env_name</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="prepend.html">prepend</a></td>
+<td>Prepend a vector.</td></tr>
+<tr><td style="width: 25%;"><a href="prim_name.html">prim_name</a></td>
+<td>Name of a primitive function</td></tr>
+</table>
+
+<h2><a name="R">-- R --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="along.html">raw_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="along.html">rep_along</a></td>
+<td>Helper to create vectors with matching length.</td></tr>
+<tr><td style="width: 25%;"><a href="restarting.html">restarting</a></td>
+<td>Create a restarting handler.</td></tr>
+<tr><td style="width: 25%;"><a href="return_from.html">return_from</a></td>
+<td>Jump to or from a frame.</td></tr>
+<tr><td style="width: 25%;"><a href="return_from.html">return_to</a></td>
+<td>Jump to or from a frame.</td></tr>
+<tr><td style="width: 25%;"><a href="rst_abort.html">rst_abort</a></td>
+<td>Jump to the abort restart.</td></tr>
+<tr><td style="width: 25%;"><a href="rst_list.html">rst_exists</a></td>
+<td>Restarts utilities.</td></tr>
+<tr><td style="width: 25%;"><a href="rst_list.html">rst_jump</a></td>
+<td>Restarts utilities.</td></tr>
+<tr><td style="width: 25%;"><a href="rst_list.html">rst_list</a></td>
+<td>Restarts utilities.</td></tr>
+<tr><td style="width: 25%;"><a href="rst_list.html">rst_maybe_jump</a></td>
+<td>Restarts utilities.</td></tr>
+<tr><td style="width: 25%;"><a href="rst_muffle.html">rst_muffle</a></td>
+<td>Jump to a muffling restart.</td></tr>
+</table>
+
+<h2><a name="S">-- S --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="scalar-type-predicates.html">scalar-type-predicates</a></td>
+<td>Scalar type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">scoped_env</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="scoped_env.html">scoped_names</a></td>
+<td>Scope environments</td></tr>
+<tr><td style="width: 25%;"><a href="set_expr.html">set_expr</a></td>
+<td>Set and get an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="set_utf8_locale.html">set_latin1_locale</a></td>
+<td>Set the locale's codeset for testing.</td></tr>
+<tr><td style="width: 25%;"><a href="set_utf8_locale.html">set_mbcs_locale</a></td>
+<td>Set the locale's codeset for testing.</td></tr>
+<tr><td style="width: 25%;"><a href="set_names.html">set_names</a></td>
+<td>Set names of a vector.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_caar</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_cadr</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_car</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_cdar</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_cddr</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_cdr</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="pairlist.html">set_node_tag</a></td>
+<td>Helpers for pairlist and language nodes.</td></tr>
+<tr><td style="width: 25%;"><a href="set_utf8_locale.html">set_utf8_locale</a></td>
+<td>Set the locale's codeset for testing.</td></tr>
+<tr><td style="width: 25%;"><a href="splice.html">splice</a></td>
+<td>Splice objects and lists of objects into a list</td></tr>
+<tr><td style="width: 25%;"><a href="stack.html">stack</a></td>
+<td>Call stack information</td></tr>
+<tr><td style="width: 25%;"><a href="stack_trim.html">stack_trim</a></td>
+<td>Trim top call layers from the evaluation stack.</td></tr>
+<tr><td style="width: 25%;"><a href="string.html">string</a></td>
+<td>Construct a character vector or a string.</td></tr>
+<tr><td style="width: 25%;"><a href="chr_set_encoding.html">str_encoding</a></td>
+<td>Set encoding of a string or character vector.</td></tr>
+<tr><td style="width: 25%;"><a href="chr_set_encoding.html">str_set_encoding</a></td>
+<td>Set encoding of a string or character vector.</td></tr>
+<tr><td style="width: 25%;"><a href="switch_lang.html">switch_lang</a></td>
+<td>Dispatch on call type.</td></tr>
+<tr><td style="width: 25%;"><a href="switch_type.html">switch_type</a></td>
+<td>Dispatch on base types.</td></tr>
+<tr><td style="width: 25%;"><a href="symbol.html">symbol</a></td>
+<td>Create a symbol or list of symbols.</td></tr>
+<tr><td style="width: 25%;"><a href="symbol.html">symbols</a></td>
+<td>Create a symbol or list of symbols.</td></tr>
+</table>
+
+<h2><a name="T">-- T --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="tidy_capture.html">tidy_capture</a></td>
+<td>Capture an expression and evaluation environment.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quotes.html">tidy_defs</a></td>
+<td>Tidy quotation of multiple expressions and dots.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_eval.html">tidy_eval</a></td>
+<td>Evaluate a formula</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_eval_env.html">tidy_eval_env</a></td>
+<td>Create a tidy evaluation environment.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_eval_env.html">tidy_eval_env_cleanup</a></td>
+<td>Create a tidy evaluation environment.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_eval.html">tidy_eval_lhs</a></td>
+<td>Evaluate a formula</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_eval.html">tidy_eval_rhs</a></td>
+<td>Evaluate a formula</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_interp.html">tidy_interp</a></td>
+<td>Process unquote operators in a captured expression.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quote.html">tidy_quote</a></td>
+<td>Tidy quotation of an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quotes.html">tidy_quotes</a></td>
+<td>Tidy quotation of multiple expressions and dots.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quote_expr.html">tidy_quote_expr</a></td>
+<td>Untidy quotation of an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="type-predicates.html">type-predicates</a></td>
+<td>Type predicates</td></tr>
+<tr><td style="width: 25%;"><a href="type_of.html">type_of</a></td>
+<td>Base type of an object.</td></tr>
+</table>
+
+<h2><a name="U">-- U --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="tidy_quote.html">UQ</a></td>
+<td>Tidy quotation of an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quote.html">UQE</a></td>
+<td>Tidy quotation of an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quote.html">UQF</a></td>
+<td>Tidy quotation of an expression.</td></tr>
+<tr><td style="width: 25%;"><a href="tidy_quote.html">UQS</a></td>
+<td>Tidy quotation of an expression.</td></tr>
+</table>
+
+<h2><a name="W">-- W --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="abort.html">warn</a></td>
+<td>Signal an error, warning, or message.</td></tr>
+<tr><td style="width: 25%;"><a href="with_attributes.html">with_attributes</a></td>
+<td>Add attributes to an object.</td></tr>
+<tr><td style="width: 25%;"><a href="with_env.html">with_env</a></td>
+<td>Evaluate an expression within a given environment.</td></tr>
+<tr><td style="width: 25%;"><a href="with_handlers.html">with_handlers</a></td>
+<td>Establish handlers on the stack.</td></tr>
+<tr><td style="width: 25%;"><a href="with_handlers.html">with_handlers_</a></td>
+<td>Establish handlers on the stack.</td></tr>
+<tr><td style="width: 25%;"><a href="with_restarts.html">with_restarts</a></td>
+<td>Establish a restart point on the stack.</td></tr>
+<tr><td style="width: 25%;"><a href="with_restarts.html">with_restarts_</a></td>
+<td>Establish a restart point on the stack.</td></tr>
+</table>
+
+<h2><a name="misc">-- misc --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="op-get-attr.html">%@%</a></td>
+<td>Infix attribute accessor.</td></tr>
+<tr><td style="width: 25%;"><a href="op-na-default.html">%|%</a></td>
+<td>Replace missing values.</td></tr>
+<tr><td style="width: 25%;"><a href="op-null-default.html">%||%</a></td>
+<td>Default value for 'NULL'.</td></tr>
+<tr><td style="width: 25%;"><a href="op-definition.html">:=</a></td>
+<td>Definition operator.</td></tr>
+</table>
+</body></html>

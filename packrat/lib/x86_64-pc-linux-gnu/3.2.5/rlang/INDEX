@@ -1,0 +1,121 @@
+abort                   Signal an error, warning, or message.
+along                   Helper to create vectors with matching length.
+are_na                  Test for missing values.
+arg_inspect             Inspect an argument
+arg_missing             Generate or handle a missing argument
+as_bytes                Coerce to a raw vector.
+as_closure              Convert to closure.
+as_env                  Coerce to an environment.
+as_function             Coerce to function.
+as_lang                 Coerce an object to a name or call.
+as_pairlist             Coerce to pairlist.
+as_tidy_quote           Coerce expressions to a tidy formula quote.
+as_utf8_character       Coerce to a character vector and attempt
+                        encoding conversion.
+bare-type-predicates    Bare type predicates
+bytes                   Create a raw vector.
+call_inspect            Inspect a call.
+caller_env              Get the environment of the caller frame.
+chr_set_encoding        Set encoding of a string or character vector.
+cnd_signal              Signal a condition.
+coercion                Coerce an object to a base type.
+dots_inspect            Inspect dots
+duplicate               Duplicate an R object.
+empty_env               Get the empty environment.
+env                     Get an environment.
+env<-                   Assignment operator for environments.
+env_assign              Assign objects to an environment.
+env_assign_promise      Assign a promise to an environment.
+env_bury                Bury bindings and define objects in new scope.
+env_clone               Clone an environment.
+env_get                 Get an object from an environment.
+env_has                 Does an environment have or see bindings?
+env_set                 Set an environment.
+env_unbind              Remove bindings from an environment.
+exiting                 Create an exiting or in place handler.
+expr_eval               Evaluate an expression in an environment.
+expr_label              Turn an expression to a label.
+f_rhs                   Get/set formula components.
+f_text                  Turn RHS of formula into a string/label.
+f_unwrap                Unwrap a formula
+fn_env                  Return the closure environment of a function.
+fn_fmls                 Extract arguments from a function
+frame_dots              Extract dots
+frame_position          Find the position or distance of a frame on the
+                        evaluation stack.
+has_length              How long is an object?
+has_name                Does an object have an element with this name?
+invoke                  Invoke a function with a list of arguments.
+is_condition            Is object a condition?
+is_dot_symbol           Is object a ..n symbol?
+is_empty                Is object an empty vector or NULL?
+is_env                  Is object an environment?
+is_expr                 Is an object an expression?
+is_formula              Is object a formula?
+is_frame                Is object a frame?
+is_function             Is object a function?
+is_integerish           Is a vector integer-like?
+is_lang                 Is object a call (language type)?
+is_named                Is object named?
+is_stack                Is object a stack?
+is_true                 Is object identical to TRUE or FALSE?
+lang                    Create a call by "hand"
+lang_args               Extract arguments from a call
+lang_fn                 Extract function from a call
+lang_head               Return the head or tail of a call object.
+lang_homogenise         Standardise a call against formal arguments.
+lang_modify             Modify the arguments of a call.
+lang_name               Extract function name of a call
+lang_standardise        Standardise a call.
+missing                 Missing values.
+modify                  Modify a vector.
+names2                  Get names of a vector.
+new-vectors             Create new vectors.
+new_cnd                 Create a condition object.
+new_fn                  Create a function by "hand"
+new_formula             Create a formula object by "hand".
+new_tidy_quote          Create a tidy quote by hand.
+ns_env                  Get the namespace of a package.
+op-definition           Definition operator.
+op-get-attr             Infix attribute accessor.
+op-na-default           Replace missing values.
+op-null-default         Default value for 'NULL'.
+pairlist                Helpers for pairlist and language nodes.
+parse_expr              Parse R code.
+prepend                 Prepend a vector.
+prim_name               Name of a primitive function
+restarting              Create a restarting handler.
+return_from             Jump to or from a frame.
+rst_abort               Jump to the abort restart.
+rst_list                Restarts utilities.
+rst_muffle              Jump to a muffling restart.
+scalar-type-predicates
+                        Scalar type predicates
+scoped_env              Scope environments
+set_expr                Set and get an expression.
+set_names               Set names of a vector.
+set_utf8_locale         Set the locale's codeset for testing.
+splice                  Splice objects and lists of objects into a list
+stack                   Call stack information
+stack_trim              Trim top call layers from the evaluation stack.
+string                  Construct a character vector or a string.
+switch_lang             Dispatch on call type.
+switch_type             Dispatch on base types.
+symbol                  Create a symbol or list of symbols.
+tidy_capture            Capture an expression and evaluation
+                        environment.
+tidy_eval               Evaluate a formula
+tidy_eval_env           Create a tidy evaluation environment.
+tidy_interp             Process unquote operators in a captured
+                        expression.
+tidy_quote              Tidy quotation of an expression.
+tidy_quote_expr         Untidy quotation of an expression.
+tidy_quotes             Tidy quotation of multiple expressions and
+                        dots.
+type-predicates         Type predicates
+type_of                 Base type of an object.
+with_attributes         Add attributes to an object.
+with_env                Evaluate an expression within a given
+                        environment.
+with_handlers           Establish handlers on the stack.
+with_restarts           Establish a restart point on the stack.

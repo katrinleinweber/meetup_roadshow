@@ -1,0 +1,30 @@
+Package: rlang
+Version: 0.0.0.9000
+Title: Tools for Language Objects and Evaluation
+Description: A toolbox for working with calls, unevaluated code, and
+    anything related to evaluation in R.
+Authors@R: c( person("Hadley", "Wickham", ,"hadley@rstudio.com",
+    c("aut", "cre")), person("Lionel", "Henry", ,"lionel@rstudio.com",
+    "aut"), person("RStudio", role = "cph") )
+License: GPL-3
+LazyData: true
+Depends: R (>= 3.1.0)
+Suggests: knitr, rmarkdown (>= 0.2.65), testthat, covr, purrr, magrittr
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+Author: Hadley Wickham [aut, cre], Lionel Henry [aut], RStudio [cph]
+Maintainer: Hadley Wickham <hadley@rstudio.com>
+Built: R 3.2.5; x86_64-pc-linux-gnu; 2017-03-07 03:19:08 UTC; unix
+RemoteType: github
+RemoteHost: https://api.github.com
+RemoteRepo: rlang
+RemoteUsername: hadley
+RemoteRef: master
+RemoteSha: 79329de7270361a0e7e5a1e71a307bbc25c08379
+GithubRepo: rlang
+GithubUsername: hadley
+GithubRef: master
+GithubSHA1: 79329de7270361a0e7e5a1e71a307bbc25c08379
+InstallAgent: packrat 0.4.8.1
+InstallSource: github
+Hash: 717532f42c89d7097fe91870d2bea5b6

@@ -1,24 +1,21 @@
 accumulate              Accumulate recursive folds across a list
 along                   Helper to create vectors with matching length.
 array-coercion          Coerce array to list
-as_function             Convert an object into a function.
+as_function             Convert an object into a function
 as_vector               Coerce a list to a vector
-at_depth                Map a function over lower levels of a nested
-                        list
 bare-type-predicates    Bare type predicates
-by_row                  Apply a function to each row of a data frame
-by_slice                Apply a function to slices of a data frame
 compose                 Compose multiple functions
-conditional-map         Modify elements conditionally
 contains                Does a list contain an object?
-cross_n                 Produce all combinations of list elements
+cross                   Produce all combinations of list elements
+depth                   Compute the depth of a vector
 detect                  Find the value or position of the first match.
-dmap                    Map over the columns of a data frame
 every                   Do every or some elements of a list satisfy a
                         predicate?
 flatten                 Flatten a list of lists into a simple vector.
 get-attr                Infix attribute accessor
 head_while              Find head/tail that all satisfies a predicate.
+imap                    Apply a function to each element of a vector,
+                        and its index
 invoke                  Invoke functions.
 is_empty                Is a vector/list empty?
 is_formula              Is a formula?
@@ -28,6 +25,7 @@ lift                    Lift the domain of a function
 lmap                    Apply a function to list-elements of a list
 map                     Apply a function to each element of a vector
 map2                    Map over multiple inputs simultaneously.
+modify                  Modify elements "in-place"
 negate                  Negate a predicate function.
 null-default            Default value for 'NULL'.
 partial                 Partial apply a function, filling in some
@@ -44,7 +42,6 @@ safely                  Capture side effects.
 scalar-type-predicates
                         Scalar type predicates
 set_names               Set names in a vector
-slice_rows              Slice a data frame into groups of rows
 splice                  Splice objects and lists of objects into a list
 split_by                Split, order and sort lists by their
                         components.
