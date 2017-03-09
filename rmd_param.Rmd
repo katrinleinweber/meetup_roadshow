@@ -52,7 +52,7 @@ saveRDS(people, file = "people.Rds")
 # `r params$character` Quick Facts
 
 ```{r flickr_photo}
-img_url <- flickr_photo_url(flickr_photos_search_one(params$character))
+img_url <- flickr_photo_url(flickr_photos_search_one(paste0(params$character, " lego starwars")))
 ```
 
 ![](`r img_url`)
@@ -94,7 +94,7 @@ home <- get_planet(home_id)
 `r params$character` is from `r home$name`.
 
 ```{r flickr_photo2}
-img_url <- flickr_photo_url(flickr_photos_search_one(home$name))
+img_url <- flickr_photo_url(flickr_photos_search_one(paste0("starwars ", home$name)))
 ```
 
 ![](`r img_url`)
