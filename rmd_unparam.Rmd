@@ -2,13 +2,6 @@
 output: 
   html_document:
     theme: journal
-params: 
-  character: 
-    value: "Luke Skywalker"
-    label: "Select Character"
-    choices: !r purrr::map_chr(readRDS("people.Rds"), "name")
-    input: select
-# character: "Luke Skywalker"  
 ---
 
 ```{r setup, include=FALSE, warning=FALSE}
@@ -50,10 +43,10 @@ saveRDS(people, file = "people.Rds")
 ```
 
 
-# `r params$character` Quick Facts
+# `r 'Luke Skywalker'` Quick Facts
 
 ```{r flickr_photo}
-img_url <- flickr_photo_url(flickr_photos_search_one(paste0(params$character, " lego starwars")))
+img_url <- flickr_photo_url(flickr_photos_search_one(paste0('Luke Skywalker', " lego starwars")))
 ```
 
 ![](`r img_url`)
@@ -61,7 +54,7 @@ img_url <- flickr_photo_url(flickr_photos_search_one(paste0(params$character, " 
 ```{r getcharacterdata}
 names <- people %>% 
   map_chr("name")
-id <- which(names == params$character)
+id <- which(names == 'Luke Skywalker')
 char <- people[[id]]
 ```
 
@@ -74,10 +67,10 @@ species_home_id <-   str_extract(species$homeworld[[1]], "\\d")
 species_home <- get_planet(species_home_id)
 ```
 
-`r params$character` is a `r char$gender` `r species$name`. Their average lifespan is `r species$average_lifespan`, they are `r species$designation` `r species$classification`s originally from `r species_home$name`. 
+`r 'Luke Skywalker'` is a `r char$gender` `r species$name`. Their average lifespan is `r species$average_lifespan`, they are `r species$designation` `r species$classification`s originally from `r species_home$name`. 
 
 
-`r species$name` | `r params$character`
+`r species$name` | `r 'Luke Skywalker'`
 ----|-----
 Hair | `r char$hair_color`
 Eyes | `r char$eye_color`
@@ -92,7 +85,7 @@ home_id <-   str_extract(char$homeworld[[1]], "\\d")
 home <- get_planet(home_id)
 ```
 
-`r params$character` is from `r home$name`.
+`r 'Luke Skywalker'` is from `r home$name`.
 
 ```{r flickr_photo2}
 img_url <- flickr_photo_url(flickr_photos_search_one(paste0("starwars ", home$name)))
@@ -116,7 +109,7 @@ residents <- map_chr(home$residents,
                       unique()
 ```
 
-Other characters from `r home$name` include: `r residents[which(residents != params$character)]`
+Other characters from `r home$name` include: `r residents[which(residents != 'Luke Skywalker')]`
 
 ## Films
 
@@ -128,7 +121,7 @@ films <- map_chr(char$films,
                       unique()
 ```
 
-`r params$character` appears in: 
+`r 'Luke Skywalker'` appears in: 
 
 `r films`
 

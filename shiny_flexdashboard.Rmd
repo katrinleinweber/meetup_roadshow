@@ -5,6 +5,7 @@ output:
     orientation: columns
     vertical_layout: fill
     css: flexdb.css
+    theme: readable
 runtime: shiny   
 ---
 
@@ -16,6 +17,7 @@ library(flexdashboard)
 library(DT)
 library(plotly)
 library(mice)
+library(ggthemes)
 library(ggfortify) # the tidyverse is extensible!
 load("sdata.Rdat")
 ```
@@ -65,27 +67,37 @@ vehicle_df <- vehicle_df %>%
 Inputs {.sidebar}
 ----------------------
 
-Explore the various Star Wars vehicles.
+#### Multivariate Model & Outlier Analysis
 
-```{r}
-selectInput("x", "X Variable to Plot", choices = colnames(vehicle_df),  selected = 'cost')
-selectInput("y","Y Variable to Plot", choices = colnames(vehicle_df), selected  = 'speed')
-```
-
-***
-
-A linear model is fit between vehicle max speed and the other characteristics. The dashboard presents model residuals and leverage. Selecting vehicle names in the righthand table will re-fit the model with the selected vehcile(s) *excluded*. 
+A linear model is fit between vehicle max speed and the other characteristics. The dashboard presents model residuals and leverage. Selecting vehicle names in the righthand table will re-fit the model with the selected vehicle(s) *excluded*. 
 
 **Technical Note**: The dataset includes many missing values. We use the `mice` package to impute missing values.
 
 ```{r model, include = FALSE}
+
+vehicle_data <- reactive({
+  
+  if (input$root) {
+    names <- vehicle_df %>%
+      select(name)
+    
+    vehicle_df <- vehicle_df %>% 
+      select(-name) %>% 
+      sqrt()
+    
+    vehicle_df <- cbind(names, vehicle_df)
+  }
+  
+  vehicle_df 
+})
+
 model_data <- reactive({
   
-  model_data <- vehicle_df
+  model_data <- vehicle_data()
   
   # exclude the vehicles selected in the table
   if (is.numeric(input$veh_list_rows_selected)) 
-    model_data <- vehicle_df[-input$veh_list_rows_selected,]  
+    model_data <- model_data[-input$veh_list_rows_selected,]  
     
   model_data
   
@@ -105,13 +117,34 @@ model <- reactive({
 ```
 
 
-R Squared: `r renderText({ summary(model())$r.squared %>% round(2) })`
+**R Squared**: `r renderText({ summary(model())$r.squared %>% round(2) })`
+
+```{r}
+checkboxInput("root", "Apply Square Root Transform", value = FALSE)
+```
+
+
+**Visualize:**
+
+```{r}
+selectInput("x", "Speed ~ ",
+            choices = colnames(vehicle_df)[sapply(vehicle_df, is.numeric)],
+            selected = 'cost')
+```
 
 
 Column {data-width=650 .tabset}
 -------------
 
-### Vehicle Characteristics
+### Model - Coefficients
+
+```{r}
+renderPrint({
+  cat(capture.output(summary(model())), sep = "\n")
+})
+```
+
+### Speed vs Attribute Plot
 
 ```{r}
 # helper function
@@ -122,13 +155,14 @@ to_label <- function(label) {
 }
 
 renderPlotly({
-  p <- ggplot(vehicle_df, aes_string(x = input$x, y = input$y, label = 'name')) + 
+  p <- ggplot(vehicle_data(), aes_string(x = input$x, y = "speed", label = 'name')) + 
     geom_point() +
     geom_smooth() +
     labs(
-      x = to_label(input$x),
-      y = to_label(input$y)
-    )
+      title = paste0("Speed vs ", to_label(input$x))
+    ) +
+    theme_fivethirtyeight() +
+    scale_color_fivethirtyeight()
   ggplotly(p, tooltip = 'name')
 })
 ```
@@ -138,7 +172,9 @@ renderPlotly({
 ```{r}
 renderPlot({
   browser()
-  autoplot(model(), which = 1, data = model_data(), label.label = 'name', alpha = 0.4)
+  autoplot(model(), which = 1, data = model_data(), label.label = 'name', alpha = 0.4) +
+    theme_fivethirtyeight() +
+    scale_color_fivethirtyeight()
 })
 ```
 
@@ -146,17 +182,13 @@ renderPlot({
 
 ```{r}
 renderPlot({
-  autoplot(model(), which = 6, data = model_data(), label.label = 'name', alpha = 0.4)
+  autoplot(model(), which = 6, data = model_data(), label.label = 'name', alpha = 0.4) +
+    theme_fivethirtyeight() +
+    scale_color_fivethirtyeight()
 })
 ```
 
-### Model - Coefficients
 
-```{r}
-renderPrint({
-  cat(capture.output(summary(model())), sep = "\n")
-})
-```
 
 
 Column {data-width=350 .tabset}
@@ -176,8 +208,6 @@ output$veh_list <- renderDataTable({
 ### Vehicle Attributes
 
 ```{r}
-renderDataTable({
-  DT::datatable(vehicle_df, fillContainer = TRUE,
+DT::datatable(vehicle_df, fillContainer = TRUE,
     class = "compact", options = list(bPaginate = FALSE))
-})
 ```
