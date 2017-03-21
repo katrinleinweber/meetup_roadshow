@@ -52,7 +52,7 @@ The stock closed `r ifelse(close>open,'up','down')` at `r close` dollars per sha
 The chart below is made with the `quantmod` and `highcharter` R packages. An API returns all of the price history based on the stock tick symbol provided as a parameter. The candlestick chart is a default function from highcharter, as is the the Economist theme.
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning = FALSE}
 
 highchart() %>% 
    hc_yAxis_multiples(
