@@ -2,7 +2,11 @@
 
 ## Demos
 
-These demos are designed to highlight the [tidyverse](http://tidyverse.org) and [RStudio Connect](https://rstudio.com/about/products/connect). If you want to see the end results, play with RStudio Connect, or if you just love Star Wars try http://roadshow.rstudio.com. The demos make use of [R Markdown](http://rmarkdown.rstudio.com) and [Shiny](http://shiny.rstudio.com) to empower R users to become data storytellers. The reports and applicatons are designed to allow end users to ask questions of the content instead of returning to the analyst for "what if" scenarios.
+These demos are designed to highlight the [tidyverse](http://tidyverse.org) and [RStudio Connect](https://rstudio.com/about/products/connect). 
+
+If you want to see the end results, play with RStudio Connect, or if you just love Star Wars try http://roadshow.rstudio.com. 
+
+The demos make use of [R Markdown](http://rmarkdown.rstudio.com) and [Shiny](http://shiny.rstudio.com) to empower R users to become data storytellers. The reports and applicatons are designed to allow end users to ask questions of the content instead of returning to the analyst for "what if" scenarios.
 
 ## Getting Started
 
@@ -14,7 +18,7 @@ The project includes packrat but does not use packrat by default. If you'd like 
 
 ## Feedback & Questions
 
-If you attended one of RStudio's presentations we'd really appreciate if you'd take 5 minutes to fill our this [survey](http://roadshow.rstudio.com/survey).
+If you attended one of RStudio's presentations we'd really appreciate if you'd take 5 minutes to fill out this [survey](http://roadshow.rstudio.com/survey).
 
 For errors or questions on code please submit an issue to this repository. For questions on RStudio Connect please email sales@rstudio.com. 
 
