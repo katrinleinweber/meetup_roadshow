@@ -30,7 +30,10 @@ ggplot(results, aes(title, ratio)) +
   ) +
   scale_y_continuous(labels = function(x){paste(x,"%")}) +
   theme_fivethirtyeight() +
-  scale_colour_fivethirtyeight()
+  scale_colour_fivethirtyeight() +
+  theme(
+    axis.text.x = element_text(angle = 35, vjust = 0.9, hjust = 0.9)
+  )
   
 
   
