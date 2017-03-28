@@ -171,7 +171,6 @@ renderPlotly({
 
 ```{r}
 renderPlot({
-  browser()
   autoplot(model(), which = 1, data = model_data(), label.label = 'name', alpha = 0.4) +
     theme_fivethirtyeight() +
     scale_color_fivethirtyeight()
