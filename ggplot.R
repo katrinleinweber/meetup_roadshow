@@ -8,6 +8,7 @@ library(ggthemes)
 
 
 films <- rwars::get_all_films()$results
+trilogies <- c("Prequels: Episode I-III", "Originals: Episode IV-VI", "Sequels: Episode VII")
 results <- tibble(
   title = map_chr(films, "title"),
   episode = map_dbl(films, "episode_id"),
@@ -16,14 +17,12 @@ results <- tibble(
   planets = map_dbl(films, ~length(.x$planets))
 ) %>% 
   mutate(ratio = starships / (vehicles + starships) * 100) %>% 
-  arrange(episode) %>% 
-  mutate(Trilogy = c(rep("Prequels: Episode I-III", 3), rep("Originals: Epsiode IV-VI", 3), rep("Sequels: Episode VII", 1))) %>% 
+  mutate(Trilogy = trilogies[findInterval(episode, c(1,4,7))]) %>%
+  arrange(episode) %>%
   mutate(title = factor(title, levels = title))
 
-
 ggplot(results, aes(title, ratio)) + 
-  geom_line(group = 1) +
-  geom_point(aes(color = Trilogy), stat = "identity", size = 4) +
+  geom_bar(aes(fill = Trilogy), stat = "identity", size = 1) +
   labs(
     title = "The Rise of Hyperdrive",
     subtitle = "Percentage of Ships with Hyperdrive Capability"
