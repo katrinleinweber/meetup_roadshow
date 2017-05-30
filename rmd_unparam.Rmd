@@ -120,7 +120,8 @@ films <- map_chr(
   char$films, 
   ~ str_extract(.x, "\\d") %>%
     get_film() %>%
-    .$title) %>% 
+    .$title
+  ) %>% 
   unique()
 ```
 
