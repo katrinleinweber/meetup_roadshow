@@ -17,11 +17,9 @@ results <- tibble(
   planets = map_dbl(films, ~length(.x$planets))
 ) %>% 
   mutate(ratio = starships / (vehicles + starships) * 100) %>% 
-  mutate(Trilogy = trilogies[findInterval(episode, c(1,4,7))]) %>%
-  arrange(episode) %>%
-  mutate(title = factor(title, levels = title))
+  mutate(Trilogy = trilogies[findInterval(episode, c(1,4,7))])
 
-ggplot(results, aes(title, ratio)) + 
+ggplot(results, aes(reorder(title, episode), ratio)) + 
   geom_bar(aes(fill = Trilogy), stat = "identity", size = 1) +
   labs(
     title = "The Rise of Hyperdrive",
