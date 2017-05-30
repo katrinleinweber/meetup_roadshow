@@ -102,11 +102,13 @@ Gravity | `r home$gravity`
 Terrain |  `r home$terrain`
 
 ```{r homeworld2}
-residents <- map_chr(home$residents, 
-                     ~ str_extract(.x, "\\d") %>%
-                         get_person() %>%
-                         .$name) %>% 
-                      unique()
+residents <- map_chr(
+  home$residents, 
+  ~ str_extract(.x, "\\d") %>%
+    get_person() %>%
+    .$name
+  ) %>% 
+  unique()
 ```
 
 Other characters from `r home$name` include: `r residents[which(residents != 'Luke Skywalker')]`
@@ -114,11 +116,12 @@ Other characters from `r home$name` include: `r residents[which(residents != 'Lu
 ## Films
 
 ```{r getfilms}
-films <- map_chr(char$films, 
-                     ~ str_extract(.x, "\\d") %>%
-                         get_film() %>%
-                         .$title) %>% 
-                      unique()
+films <- map_chr(
+  char$films, 
+  ~ str_extract(.x, "\\d") %>%
+    get_film() %>%
+    .$title) %>% 
+  unique()
 ```
 
 `r 'Luke Skywalker'` appears in: 
