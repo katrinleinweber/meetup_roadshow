@@ -41,18 +41,17 @@
 library(assertthat)
 library(purrr)
 library(readr)
+
 m <- readRDS("model.Rds")
 avg <- readRDS("ship_avg.Rds")
 avg_field <- names(avg)
 n_pred <- length(coef(m)) - 1
 
-err_msg <- paste0("Could not parse the `to_score` input, which should be 5 comma seperated values!")
 
 is_numberish <- function(vals) {
   classes <- map_chr(vals, guess_parser)
   tot_numeric <- sum(grepl(pattern = "double|integer", x = classes))
   tot_numeric == length(classes)
-
 }
 
 is_5_csv <- function(to_score) {
@@ -60,11 +59,15 @@ is_5_csv <- function(to_score) {
 }
 
 on_failure(is_numberish) <- function(call, env) {
-  paste0("Arguments contain non-numeric data!")
+  "Arguments contain non-numeric data!"
 }
 
 on_failure(is_5_csv) <- function(call, env) {
-  err_msg
+  "Could not parse the `to_score` input, which should be 5 comma seperated values!"
+}
+
+get_score <- function(vals) {
+  sum(coef(m)*c(1, as.numeric(vals)))
 }
 
 #* @get /score-ship-csv
@@ -81,7 +84,7 @@ function(to_score, req) {
   assert_that(is_numberish(vals))
   
   # return the score
-  sum(coef(m)*c(1, as.numeric(vals)))
+  get_score(vals)
 }
 
 #* @get /score-ship-named
@@ -92,15 +95,16 @@ function(crew = avg[avg_field == "crew"],
          length = avg[avg_field == "length"],
          req) {
   
-  
+  # check that inputs can be coereced to numeric
   inputs <- list(crew, cost, passengers, cargo, length)
   assert_that(is_numberish(inputs))
   
+  # now that it is safe, do it!
   vals <- as.numeric(c(1, crew, cost, passengers, cargo, length))
     
 
   # return the score
-  sum(coef(m)*c(1, as.numeric(vals)))
+  get_score(vals)
 }
 
 
