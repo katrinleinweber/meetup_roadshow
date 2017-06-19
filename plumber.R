@@ -70,22 +70,6 @@ get_score <- function(vals) {
   sum(coef(m)*c(1, as.numeric(vals)))
 }
 
-#* @get /score-ship-csv
-function(to_score, req) {
-  
-  # check input
-  assert_that(is_5_csv(to_score))
-  
-  # parse input as csv
-  c <- textConnection(to_score)
-  vals <- read.csv(c, header = FALSE)  
-
-  # check that the parsed csv has the right types
-  assert_that(is_numberish(vals))
-  
-  # return the score
-  get_score(vals)
-}
 
 #* @get /score-ship-named
 function(crew = avg[avg_field == "crew"],
