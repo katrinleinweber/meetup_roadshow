@@ -38,6 +38,11 @@
 
 # API ----
 
+
+#* @apiTitle Ship Speed Predictor
+#* @apiDescription Predict the speed of star wars 
+#*    spaceships with a model trained on SWAPI data
+
 library(assertthat)
 library(purrr)
 library(readr)
@@ -71,7 +76,15 @@ get_score <- function(vals) {
 }
 
 
+#* Get predicted speed based on ship attributes
+#* @param crew:int number of personnel needed to run or pilot this vehicle
+#* @param cost:numeric cost of this vehicle new, in Galactic Credits
+#* @param passengers:int number of non-essential people this vehicle can transport
+#* @param cargo:numeric maximum number of kilograms that this vehicle can transport
+#* @param length:numeric length of the ship in meters
 #* @get /score-ship-named
+#* @response 200 predicted speed of the ship
+
 function(crew = avg[avg_field == "crew"],
          cost = avg[avg_field == "cost"],
          passengers = avg[avg_field == "passengers"],
