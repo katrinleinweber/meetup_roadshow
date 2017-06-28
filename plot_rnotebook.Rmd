@@ -1,37 +1,51 @@
 ---
-title: "tidyverse RNotebook"
+title: "Star Wars and the tidyverse"
 output:
-  html_document: default
   html_notebook: default
+  html_document: default
 ---
 
-## rwars
+How has hyperdrive technology in Star Wars changed over time? Are there differences by trilogies? We analyze these data from the [They Star Wars API (SWAPI)](http://swapi.co/).
 
-```{r, rwars_intro}
+## Setup
 
+Load the `tidyverse` which is a collection of R packages that share common philosophies and are designed to work together. Load `rwars` which accesses SWAPI. Load additional packages for visualizing the data. Create labels for the trilogies. Pull data from SWAPI.
+
+```{r, message=FALSE}
+library(tidyverse)
 library(rwars)
-films <- get_all_films()$results
+library(forcats)
+library(ggrepel)
+library(ggthemes)
 
+trilogies <- c(
+  "Prequels: Episode I-III", 
+  "Originals: Episode IV-VI", 
+  "Sequels: Episode VII"
+  )
+
+films <- get_all_films()$results
 ```
 
-## tidyverse
+## The Tidyverse
 
 The tidyverse is a collection of R packages that share common philosophies and are designed to work together. This site is a work-in-progress guide to the tidyverse and its packages.
 
 ```{r, tidvyverse_intro}
-
 library(tidyverse)
-
 ```
  
- 
- 
- 
-## purrr 
+## Package: dplyr
+
+```{r}
+1
+```
+
+## Package: purrr 
  
 *purrr* enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors. If you’ve never heard of FP before, the best place to start is the family of map() functions which allow you to replace many for loops with code that is both more succinct and easier to read. The best place to learn about the map() functions is the iteration chapter in R for data science.
 
-Using `sapply`
+We will compare `lapply` to `purrr::map` and `purrr::map_chr`.
 
 ```{r}
 lapply(films, function(x)x$title)
@@ -45,27 +59,31 @@ map(films, "title")
 map_chr(films, "title")
 ```
 
-## tibble
+## Package: tibble
 
 A *tibble*, or *tbl_df*, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are *lazy and surly*: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print method() which makes them easier to use with large datasets containing complex objects.  
 
-*Edgar's note* - No more `stringsAsFactors = FALSE` ! 
+Notice how `data.frame` converts characters into factors, whereas `tibble` does not. No more `stringsAsFactors = FALSE` 
 
 
 ```{r}
 data.frame(
-  a = c(1:10),
-  b = c("a","a","a","a","a","a","a","a","a","a"))
+  id = 1:3,
+  trilogies = trilogies
+)
 ```
 
 
 ```{r}
 tibble(
-  a = c(1:10),
-  b = c("a","a","a","a","a","a","a","a","a","a"))
+  id = 1:3,
+  trilogies = trilogies
+)
 ```
 
-## Packages assemble!
+## Example
+
+What is the ratio of ships to vehicles in each movie? We will use the `tidyverse` to organize and visualize Star Wars data.
 
 ```{r}
 results <- tibble(
@@ -74,79 +92,30 @@ results <- tibble(
   starships = map_dbl(films, ~length(.x$starships)),
   vehicles = map_dbl(films, ~length(.x$vehicles)),
   planets = map_dbl(films, ~length(.x$planets))
-) 
-
-results
-```
-
-
-```{r}
-trilogies <- c("Prequels: Episode I-III", "Originals: Episode IV-VI", "Sequels: Episode VII")
-
-results <- results %>%
-  mutate(ratio = starships / (vehicles + starships) * 100) %>% 
+  ) %>%
+  mutate(ships = vehicles + starships) %>%
+  mutate(ratio = starships / ships * 100) %>% 
   mutate(Trilogy = trilogies[findInterval(episode, c(1,4,7))])
-
-
 results
 ```
 
-
-### Visualize it
-
 ```{r}
-p <- ggplot(results, aes(reorder(title, episode), ratio)) + 
-  geom_bar(aes(fill = Trilogy), stat = "identity", size = 1)
-
-p
-```
-```{r}
-p <- p +
+ggplot(results, aes(reorder(title, episode), ratio)) + 
+  geom_bar(aes(fill = Trilogy), stat = "identity", size = 1) +
   labs(
     title = "The Rise of Hyperdrive",
     subtitle = "Percentage of Ships with Hyperdrive Capability"
-  )
-
-p
-```
-
-```{r}
-library(ggthemes)
-
-p <- p +
+  ) +
   scale_y_continuous(labels = function(x){paste(x,"%")}) +
   theme_fivethirtyeight() +
   scale_colour_fivethirtyeight() +
   theme(
     axis.text.x = element_text(angle = 35, vjust = 0.9, hjust = 0.9)
   )
-
-p
 ```
 
-```{r}
+## Insights and Predictions
 
-tibble(
-  title = map_chr(films, "title"),
-  episode = map_dbl(films, "episode_id"),
-  starships = map_dbl(films, ~length(.x$starships)),
-  vehicles = map_dbl(films, ~length(.x$vehicles)),
-  planets = map_dbl(films, ~length(.x$planets))
-) %>% 
-  mutate(ratio = starships / (vehicles + starships) * 100) %>% 
-  mutate(Trilogy = trilogies[findInterval(episode, c(1,4,7))]) %>%
-  ggplot(aes(reorder(title, episode), ratio)) + 
-    geom_bar(aes(fill = Trilogy), stat = "identity", size = 1) +
-    labs(
-      title = "The Rise of Hyperdrive",
-      subtitle = "Percentage of Ships with Hyperdrive Capability"
-    ) +
-    scale_y_continuous(labels = function(x){paste(x,"%")}) +
-    theme_fivethirtyeight() +
-    scale_colour_fivethirtyeight() +
-    theme(
-      axis.text.x = element_text(angle = 35, vjust = 0.9, hjust = 0.9)
-    )
-  
-```
+These data indicate an increased emphasis on hyperdrive from one trilogy to the next. However, it is important to note that the trilogies were made out of order. So there was actually a decrease in the percentage of hyperdrives from the second to the first trilogy. 
 
+We predict that *Episode VIII* will have more ships overall than *Episode VII*, and that it will have a very high percentage of ships with hyperdrive.
