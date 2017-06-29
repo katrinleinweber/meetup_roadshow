@@ -2,7 +2,6 @@
 title: "Star Wars and the tidyverse"
 output:
   html_notebook: default
-  html_document: default
 ---
 
 How has hyperdrive technology in Star Wars changed over time? Are there differences by trilogies? We analyze these data from the [They Star Wars API (SWAPI)](http://swapi.co/).
