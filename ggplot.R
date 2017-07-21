@@ -6,9 +6,8 @@ library(ggthemes)
 
 ## What is the ratio of ships to vehicles in each movie?
 
-
-films <- rwars::get_all_films()$results
 trilogies <- c("Prequels: Episode I-III", "Originals: Episode IV-VI", "Sequels: Episode VII")
+films <- rwars::get_all_films()$results
 results <- tibble(
   title = map_chr(films, "title"),
   episode = map_dbl(films, "episode_id"),

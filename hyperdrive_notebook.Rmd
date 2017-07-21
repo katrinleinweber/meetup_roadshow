@@ -1,0 +1,99 @@
+---
+title: "Star Wars and the Hyperdrive"
+subtitle: Insights across episodes and trilogies
+output: html_notebook
+---
+
+How has hyperdrive technology in Star Wars changed over time? Are there differences by trilogies? We analyze these data from the [They Star Wars API (SWAPI)](http://swapi.co/).
+
+## Setup
+
+Load the `tidyverse` which is a collection of R packages that share common philosophies and are designed to work together. Load `rwars` which accesses SWAPI. Load additional packages for visualizing the data.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(rwars)
+library(forcats)
+library(ggrepel)
+library(ggthemes)
+```
+
+## Using the Tidyverse
+
+What is the ratio of ships to vehicles in each movie? We will use the `rwars` package to access our data and the `tidyverse` package to tidy the data. The output format will be one row per observation and one column per metric. We also define a new label, `trilogies`, and join it to our data.
+
+```{r}
+trilogies <- c(
+  "Prequels: Episode I-III", 
+  "Originals: Episode IV-VI", 
+  "Sequels: Episode VII"
+  )
+films <- rwars::get_all_films()$results
+results <- tibble(
+  title = map_chr(films, "title"),
+  episode = map_dbl(films, "episode_id"),
+  starships = map_dbl(films, ~length(.x$starships)),
+  vehicles = map_dbl(films, ~length(.x$vehicles)),
+  planets = map_dbl(films, ~length(.x$planets))
+  ) %>% 
+  mutate(ships = vehicles + starships) %>%
+  mutate(ratio = starships / ships * 100) %>% 
+  mutate(Trilogy = trilogies[findInterval(episode, c(1,4,7))])
+results
+```
+
+## Visualization
+
+We will visually examine vehicls with hyperdrive (`starships`) to the total number of vehicles (`starships + vehicles`) to determine if there are trends over time or by trilogy.
+
+```{r}
+results %>%
+  ggplot(aes(ships, starships)) +
+  geom_point(aes(color = Trilogy)) +
+  theme_fivethirtyeight() +
+  geom_smooth(method = "lm") +
+  geom_text(aes(label = title), vjust = -1, size = 2.5) +
+  labs(
+    title = "Hyperdrive Correlations",
+    subtitle = "The Number of Ships with Hyperdrive Capability"
+  )
+```
+
+There is a strong correlation between the number of ships with hyperdrive and the total number of ships. Notice that the number of ships increases within each trilogy. Expect more ships in *Episode VIII: The Last Jedi*.
+
+```{r}
+ggplot(results, aes(reorder(title, episode), ratio)) + 
+  geom_bar(aes(fill = Trilogy), stat = "identity", size = 1) +
+  labs(
+    title = "The Rise of Hyperdrive",
+    subtitle = "Percentage of Ships with Hyperdrive Capability"
+  ) +
+  scale_y_continuous(labels = function(x){paste(x,"%")}) +
+  theme_fivethirtyeight() +
+  scale_colour_fivethirtyeight() +
+  theme(
+    axis.text.x = element_text(angle = 35, vjust = 0.9, hjust = 0.9)
+  )
+```
+
+The data show a positive trend for the percentage of ships with hyperdrive capability. Notice that 100% of the ships in *The Force Awakens* had hyperdrive. What will be the percentage for *The Last Jedi?*.
+
+## Model
+
+Based on our visual inspection, we will build a simple linear model that predicts the number of ships with hyperdrive.
+
+```{r}
+starship_model <- lm(starships ~ ships, data = results)
+coef_ships <- coef(starship_model)['ships']
+summary(starship_model)
+```
+
+The model indicates that for every additional ship introduced there are `r round(coef_ships, 2)` more ships with hyperdrive capability added. In other words, the number of ships with hyperdrive is half of all ships plus one.
+
+## Insights and predictions
+
+There is a strong correlation between total number of ships and the number of ships with hyperdrive. The model predicts the number of ships with hyperdrive is roughly half of all ships plus one.
+
+These data indicate an increased emphasis on hyperdrive from one trilogy to the next. However, it is important to note that the trilogies were made out of order. So there was actually a decrease in the percentage of hyperdrives from the second to the first trilogy. 
+
+We predict that *Episode VIII* will have more ships overall than *Episode VII*, and that it will have a very high percentage of ships with hyperdrive.
