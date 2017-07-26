@@ -59,17 +59,10 @@ is_numberish <- function(vals) {
   tot_numeric == length(classes)
 }
 
-is_5_csv <- function(to_score) {
-  lengths(regmatches(to_score, gregexpr(",", to_score))) == 4
-}
-
 on_failure(is_numberish) <- function(call, env) {
   "Arguments contain non-numeric data!"
 }
 
-on_failure(is_5_csv) <- function(call, env) {
-  "Could not parse the `to_score` input, which should be 5 comma seperated values!"
-}
 
 get_score <- function(vals) {
   sum(coef(m)*c(1, as.numeric(vals)))
