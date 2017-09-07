@@ -6,7 +6,7 @@ These demos are designed to highlight the [tidyverse](http://tidyverse.org) and 
 
 If you want to see the end results, play with RStudio Connect, or if you just love Star Wars try http://roadshow.rstudio.com. 
 
-The demos make use of [R Markdown](http://rmarkdown.rstudio.com) and [Shiny](http://shiny.rstudio.com) to empower R users to become data storytellers. The reports and applicatons are designed to allow end users to ask questions of the content instead of returning to the analyst for "what if" scenarios.
+The demos make use of [R Markdown](http://rmarkdown.rstudio.com) and [Shiny](http://shiny.rstudio.com) to empower R users to become data storytellers. We also discuss making your work accessible to others through [API's](https://blog.rstudio.com/2017/08/03/rstudio-connect-v1-5-4-plumber/) with [Plumber](https://www.rplumber.io/). The reports and applicatons are designed to allow end users to ask questions of the content instead of returning to the analyst for "what if" scenarios.
 
 ## Getting Started
 
