@@ -7,7 +7,7 @@
 # 
 # library(tidyverse)
 # library(mice)
-# load("sdata.Rdat")
+# load("plumber/data/sdata.Rdat")
 # 
 # vehicle_df <- tibble(
 #   name = map_chr(vehicles, "name"),
@@ -30,10 +30,10 @@
 # 
 # # save the averages for default values later
 # avg <- colMeans(imputed)
-# saveRDS(avg, file = "ship_avg.Rds")
+# saveRDS(avg, file = "plumber/data/ship_avg.Rds")
 # 
 # # save the model for later use
-# saveRDS(m, file = "model.Rds")
+# saveRDS(m, file = "plumber/data/model.Rds")
 
 
 # API ----
@@ -47,11 +47,10 @@ library(assertthat)
 library(purrr)
 library(readr)
 
-m <- readRDS("model.Rds")
-avg <- readRDS("ship_avg.Rds")
+m <- readRDS("data/model.Rds")
+avg <- readRDS("data/ship_avg.Rds")
 avg_field <- names(avg)
 n_pred <- length(coef(m)) - 1
-
 
 is_numberish <- function(vals) {
   classes <- map_chr(vals, guess_parser)
@@ -62,7 +61,6 @@ is_numberish <- function(vals) {
 on_failure(is_numberish) <- function(call, env) {
   "Arguments contain non-numeric data!"
 }
-
 
 get_score <- function(vals) {
   sum(coef(m)*c(1, as.numeric(vals)))
@@ -88,14 +86,14 @@ function(crew = avg[avg_field == "crew"],
   # check that inputs can be coereced to numeric
   inputs <- list(crew, cost, passengers, cargo, length)
   assert_that(is_numberish(inputs))
-  
-  # now that it is safe, do it!
-  vals <- as.numeric(c(1, crew, cost, passengers, cargo, length))
-    
 
   # return the score
-  get_score(vals)
+  get_score(inputs)
 }
 
-
-
+# Publish to RStudio Connect
+# install.packages("plumber")
+# r <- plumber::plumb("demos/plumber.R")
+# r$run(port=8000)
+# rsconnect::deployAPI(api = "plumber")
+# 
