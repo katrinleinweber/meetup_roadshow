@@ -138,8 +138,9 @@ results %>%
   geom_text(aes(label = title), vjust = -1, size = 2.5) +
   labs(
     title = "Hyperdrive Correlations",
-    subtitle = "The Number of Ships with Hyperdrive Capability"
+    subtitle = "The Number of Ships with Hyperdrive vs Total Ships"
   )
+
 
 starship_model <- lm(starships ~ ships, data = results)
 coef_ships <- coef(starship_model)['ships']
