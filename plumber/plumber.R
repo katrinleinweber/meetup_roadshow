@@ -93,7 +93,7 @@ function(crew = avg[avg_field == "crew"],
 
 # Publish to RStudio Connect
 # install.packages("plumber")
-# r <- plumber::plumb("demos/plumber.R")
+# r <- plumber::plumb("plumber/plumber.R")
 # r$run(port=8000)
 # rsconnect::deployAPI(api = "plumber")
-# 
+
