@@ -9,11 +9,11 @@ citEntry(entry = "Article",
   volume       = "71",
   month        = "March",
   pages        = "1054--1063",
-  url          = "http://dx.doi.org/10.1016/j.csda.2013.02.005",
+  url          = "https://doi.org/10.1016/j.csda.2013.02.005",
 
   textVersion  =
   paste("Dirk Eddelbuettel, Conrad Sanderson (2014).",
         "RcppArmadillo: Accelerating R with high-performance C++ linear algebra.",
         "Computational Statistics and Data Analysis, Volume 71, March 2014, pages 1054-1063.",
-        "URL http://dx.doi.org/10.1016/j.csda.2013.02.005")
+        "URL https://doi.org/10.1016/j.csda.2013.02.005")
 )

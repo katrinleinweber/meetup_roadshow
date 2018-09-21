@@ -76,7 +76,7 @@ prettyDate <- format(Sys.Date(), "%B %e, %Y")
 
   \title{RcppArmadillo: Accelerating R \\with High-Performance C++ Linear Algebra\footnote{
       This vignette corresponds to a
-      \href{http://dx.doi.org/10.1016/j.csda.2013.02.005}{paper published} in
+      \href{https://doi.org/10.1016/j.csda.2013.02.005}{paper published} in
       \href{http://www.journals.elsevier.com/computational-statistics-and-data-analysis/}{Computational Statistics and Data Analysis}.
       Currently still identical to the paper, this vignette version may over time receive minor updates.
       For citations, please use \citet{Eddelbuettel+Sanderson:2014:RcppArmadillo} as provided by \code{citation("RcppArmadillo")}.
